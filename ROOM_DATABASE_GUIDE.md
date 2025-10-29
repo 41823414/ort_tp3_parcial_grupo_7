@@ -13,7 +13,13 @@
 ### Dependencias agregadas:
 - `room-runtime` (2.6.1)
 - `room-ktx` (2.6.1) - Extensiones de Kotlin con soporte para corrutinas
-- `room-compiler` (2.6.1) - Procesador de anotaciones
+- `room-compiler` (2.6.1) - Procesador de anotaciones con **KSP** ⚡
+
+### 🚀 Usando KSP (Kotlin Symbol Processing):
+```kotlin
+// Room ahora usa KSP en lugar de KAPT
+ksp(libs.room.compiler)  // ⚡ 2x más rápido que kapt()
+```
 
 ## 🏗️ Componentes de Room
 

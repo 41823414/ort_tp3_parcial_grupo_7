@@ -9,9 +9,15 @@
 
 ### Dependencias agregadas:
 - `hilt-android` (2.51.1)
-- `hilt-compiler` (2.51.1)
+- `hilt-compiler` (2.51.1) - Procesador con **KSP** ⚡
 - `hilt-navigation-compose` (1.2.0)
-- `kotlin-kapt` plugin
+- `ksp` plugin (Kotlin Symbol Processing)
+
+### 🚀 Usando KSP en lugar de KAPT:
+```kotlin
+// Hilt ahora usa KSP para compilación más rápida
+ksp(libs.hilt.compiler)  // ⚡ 2x más rápido que kapt()
+```
 
 ## 🎯 Componentes Principales
 
