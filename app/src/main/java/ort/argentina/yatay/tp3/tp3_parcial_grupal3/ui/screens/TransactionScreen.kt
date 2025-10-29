@@ -1,4 +1,4 @@
-package ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.home
+package ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.transaction
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,22 +10,18 @@ import androidx.compose.ui.res.stringResource
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.R
 
 /**
- * Home Screen - Pantalla principal de la aplicación
- * TODO: Implementar dashboard principal
+ * Transaction Screen - Pantalla de transacciones
+ * TODO: Implementar lista de transacciones y formulario de nueva transacción
  */
 @Composable
-fun HomeScreen(
-    onNavigateToBalance: () -> Unit = {},
-    onNavigateToTransactions: () -> Unit = {},
-    onNavigateToCategories: () -> Unit = {},
-    onNavigateToProfile: () -> Unit = {},
-    onShowNotifications: () -> Unit = {}
+fun TransactionScreen(
+    onNavigateBack: () -> Unit = {}
 ) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = stringResource(R.string.home_title))
+        Text(text = stringResource(R.string.transaction_title))
     }
 }
 

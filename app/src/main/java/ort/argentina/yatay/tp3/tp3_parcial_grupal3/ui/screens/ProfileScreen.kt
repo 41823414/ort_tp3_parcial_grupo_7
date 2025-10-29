@@ -1,55 +1,28 @@
-package ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens
+package ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components.CustomCard
-import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components.SectionTitle
+import androidx.compose.ui.res.stringResource
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.R
 
 /**
- * PANTALLA PROFILE - Pantalla de perfil de usuario
+ * Profile Screen - Pantalla de perfil de usuario
+ * TODO: Implementar visualización y edición de perfil
  */
 @Composable
-fun ProfileScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+fun ProfileScreen(
+    onNavigateBack: () -> Unit = {},
+    onLogout: () -> Unit = {}
+) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
-        Icon(
-            imageVector = Icons.Default.Person,
-            contentDescription = "Profile",
-            modifier = Modifier.size(80.dp),
-            tint = MaterialTheme.colorScheme.primary
-        )
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        SectionTitle(text = "Perfil de Usuario")
-
-        Text(
-            text = "Aquí se mostrará la información del perfil",
-            style = MaterialTheme.typography.bodyLarge
-        )
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        CustomCard {
-            Text(
-                text = "Información",
-                style = MaterialTheme.typography.titleMedium
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "Nombre: Usuario Demo")
-            Text(text = "Email: usuario@ejemplo.com")
-            Text(text = "Rol: Desarrollador")
-        }
+        Text(text = stringResource(R.string.profile_title))
     }
 }
 
