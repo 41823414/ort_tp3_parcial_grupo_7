@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "805736417647",
+    "project_id": "tp3-parcial-fd4a7",
+    "storage_bucket": "tp3-parcial-fd4a7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805736417647:android:11a34914ee92292145c09a",
+        "android_client_info": {
+          "package_name": "com.ar.edu.ort.parcial"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0Hb_ymPl3qu9gaWPtgtQNve-lZaZ6-K8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -41,3 +41,8 @@ replay_pid*
 .externalNativeBuild
 .cxx
 local.properties
+
+# Firebase
+google-services.json
+**/google-services.json
+
