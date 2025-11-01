@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -87,7 +88,7 @@ private fun HomeHeader(onNotificationClick: () -> Unit) {
 
         Surface(
             modifier = Modifier
-                .size(44.dp)
+                .size(32.dp)
                 .clip(RoundedCornerShape(50)),
             color = Color.White,
             shadowElevation = 2.dp
@@ -96,8 +97,8 @@ private fun HomeHeader(onNotificationClick: () -> Unit) {
                 Icon(
                     painter = painterResource(R.drawable.bell),
                     contentDescription = "Notifications",
-                    tint = colorResource(R.color.caribbean_green),
-                    modifier = Modifier.size(24.dp)
+                    tint = colorResource(R.color.void_black),
+                    modifier = Modifier.size(20.dp)
                 )
             }
         }
@@ -112,7 +113,6 @@ private fun BalanceSection() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(colorResource(R.color.caribbean_green))
             .padding(horizontal = 24.dp, vertical = 16.dp)
     ) {
         // 2.1 Total Balance / Total Expense Row
@@ -120,19 +120,90 @@ private fun BalanceSection() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(24.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            BalanceCard(
-                title = "Total Balance",
-                amount = "$7,783.00",
-                modifier = Modifier.weight(1f)
+            // Balance Column
+            Column(modifier = Modifier.weight(1f)) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(24.dp)
+                            .border(1.dp, colorResource(R.color.void_black), RoundedCornerShape(6.dp)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.arrow_up_left),
+                            contentDescription = "Balance Up",
+                            tint = colorResource(R.color.void_black),
+                            modifier = Modifier
+                                .size(16.dp)
+                                .rotate(90f)
+                        )
+                    }
+                    Text(
+                        text = "Total Balance",
+                        fontSize = 12.sp,
+                        color = colorResource(R.color.void_black)
+                    )
+                }
+                Text(
+                    text = "$7,783.00",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = colorResource(R.color.honeydew)
+                )
+            }
+
+            // Vertical Divider Line
+            Box(
+                modifier = Modifier
+                    .width(1.dp)
+                    .height(60.dp)
+                    .background(colorResource(R.color.light_green))
             )
-            BalanceCard(
-                title = "Total Expense",
-                amount = "-$1,187.40",
-                amountColor = colorResource(R.color.vivid_blue),
-                modifier = Modifier.weight(1f)
-            )
+
+            // Expense Column
+            Column(modifier = Modifier.weight(1f)) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(24.dp)
+                            .border(1.dp, colorResource(R.color.void_black), RoundedCornerShape(6.dp)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.arrow_down_right),
+                            contentDescription = "Expense Down",
+                            tint = colorResource(R.color.void_black),
+                            modifier = Modifier.size(16.dp)
+                        )
+                    }
+                    Text(
+                        text = "Total Expense",
+                        fontSize = 12.sp,
+                        color = colorResource(R.color.void_black)
+                    )
+                }
+                Text(
+                    text = "-$1,187.40",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = colorResource(R.color.ocean_blue)
+                )
+            }
         }
 
         // 2.2 Progress Bar
@@ -145,44 +216,12 @@ private fun BalanceSection() {
         Text(
             text = "30% Of Your Expenses, Looks Good.",
             fontSize = 12.sp,
-            color = Color.White,
+            color = colorResource(R.color.void_black),
             modifier = Modifier.padding(top = 8.dp)
         )
     }
 }
 
-/**
- * Card para mostrar Balance o Expense
- */
-@Composable
-private fun BalanceCard(
-    title: String,
-    amount: String,
-    amountColor: Color = Color.White,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier
-            .background(
-                color = Color.White.copy(alpha = 0.1f),
-                shape = RoundedCornerShape(12.dp)
-            )
-            .padding(12.dp)
-    ) {
-        Text(
-            text = title,
-            fontSize = 12.sp,
-            color = Color.White.copy(alpha = 0.8f)
-        )
-        Text(
-            text = amount,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
-            color = amountColor,
-            modifier = Modifier.padding(top = 4.dp)
-        )
-    }
-}
 
 /**
  * Progress Bar con etiqueta
