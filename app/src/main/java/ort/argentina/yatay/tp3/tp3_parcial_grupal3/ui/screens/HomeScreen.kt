@@ -40,8 +40,8 @@ fun HomeScreen(
     ) {
         Column(
             modifier = Modifier
-                .weight(1f)
-                .verticalScroll(rememberScrollState()),
+                .weight(1f),
+                //.verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // 1. Header
@@ -67,9 +67,9 @@ fun HomeScreen(
 private fun HomeHeader(onNotificationClick: () -> Unit) {
     Row(
         modifier = Modifier
-            .fillMaxWidth(0.9f)
-            .background(colorResource(R.color.caribbean_green))
-            .padding(24.dp),
+            .fillMaxWidth(0.85f)
+            .padding(horizontal = 0.dp, vertical = 16.dp)
+            .background(colorResource(R.color.caribbean_green)),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -113,13 +113,12 @@ private fun HomeHeader(onNotificationClick: () -> Unit) {
 private fun BalanceSection() {
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 24.dp, vertical = 16.dp),
+            .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Column(
             modifier = Modifier
-                .fillMaxWidth(0.8f)
+                .fillMaxWidth(0.75f)
         ) {
         // 2.1 Total Balance / Total Expense Row
         Row(
@@ -281,18 +280,19 @@ private fun MainContentCard(
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(top = 16.dp)
     ) {
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(16.dp)),
+                .clip(RoundedCornerShape(48.dp)),
             color = colorResource(R.color.honeydew),
             shadowElevation = 4.dp
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(top = 16.dp, bottom=64.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Column(
@@ -308,55 +308,122 @@ private fun MainContentCard(
                                 shape = RoundedCornerShape(16.dp)
                             )
                             .padding(16.dp),
-                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                        verticalAlignment = Alignment.Top
                     ) {
-                    // Car Icon Box
-                    Box(
-                        modifier = Modifier
-                            .size(80.dp)
-                            .background(
-                                color = colorResource(R.color.caribbean_green),
-                                shape = RoundedCornerShape(16.dp)
-                            )
-                            .border(2.dp, Color.White, RoundedCornerShape(16.dp)),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            painter = painterResource(R.drawable.car),
-                            contentDescription = "Savings",
-                            tint = Color.White,
-                            modifier = Modifier.size(40.dp)
-                        )
-                    }
-
-                    Column(
-                        modifier = Modifier
-                            .weight(1f)
-                            .align(Alignment.CenterVertically),
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        Text(
-                            text = "Savings\nOn Goals",
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.White
-                        )
-                        Row(
-                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        // Left Column: Car Icon with white border circle + Title
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth(0.3f),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
-                            TransactionItem(
-                                label = "Revenue Last Week",
-                                amount = "$4,000.00",
-                                amountColor = Color.White
-                            )
-                            TransactionItem(
-                                label = "Food Last Week",
-                                amount = "-$100.00",
-                                amountColor = colorResource(R.color.vivid_blue)
+                            Box(
+                                modifier = Modifier
+                                    .size(60.dp)
+                                    .border(2.dp, Color.White, shape = RoundedCornerShape(50)),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    painter = painterResource(R.drawable.car),
+                                    contentDescription = "Car",
+                                    tint = colorResource(R.color.void_black),
+                                    modifier = Modifier.size(30.dp)
+                                )
+                            }
+                            Text(
+                                text = "Savings\nOn Goals",
+                                fontSize = 10.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = colorResource(R.color.void_black),
+                                textAlign = androidx.compose.ui.text.style.TextAlign.Center
                             )
                         }
+
+                        // Vertical divider
+                        Box(
+                            modifier = Modifier
+                                .width(1.dp)
+                                .height(100.dp)
+                                .background(colorResource(R.color.light_green))
+                        )
+
+                        // Column with two rows (Revenue and Food)
+                        Column(
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxWidth(0.7f),
+                            verticalArrangement = Arrangement.spacedBy(12.dp)
+                        ) {
+
+                            // Revenue Row
+                            Row(
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Icon(
+                                    painter = painterResource(R.drawable.cash),
+                                    contentDescription = "Revenue",
+                                    tint = colorResource(R.color.void_black),
+                                    modifier = Modifier
+                                        .size(42.dp)
+                                )
+                                Column(
+                                    modifier = Modifier.weight(1f).padding(start = 8.dp)
+                                ) {
+                                    Text(
+                                        text = "Revenue Last Week",
+                                        fontSize = 11.sp,
+                                        color = colorResource(R.color.void_black)
+                                    )
+                                    Text(
+                                        text = "$4,000.00",
+                                        fontSize = 20.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        color = colorResource(R.color.void_black)
+                                    )
+                                }
+                            }
+
+                            // Horizontal divider
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(1f)
+                                    .height(1.dp)
+                                    .background(colorResource(R.color.light_green))
+                            )
+
+                            // Food Row
+                            Row(
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Icon(
+                                    painter = painterResource(R.drawable.dish),
+                                    contentDescription = "Food",
+                                    tint = colorResource(R.color.void_black),
+                                    modifier = Modifier.size(42.dp)
+                                )
+                                Column(
+                                    modifier = Modifier.weight(1f).padding(start = 8.dp)
+                                ) {
+                                    Text(
+                                        text = "Food Last Week",
+                                        fontSize = 11.sp,
+                                        color = colorResource(R.color.void_black)
+                                    )
+                                    Text(
+                                        text = "-$100.00",
+                                        fontSize = 20.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        color = colorResource(R.color.vivid_blue)
+                                    )
+                                }
+                            }
+                        }
                     }
-                }
 
                 // 3.2 Period Selector Buttons
                 PeriodSelector(
@@ -415,7 +482,7 @@ private fun PeriodSelector(
         modifier = modifier
             .fillMaxWidth()
             .background(
-                color = colorResource(R.color.honeydew),
+                color = colorResource(R.color.light_green),
                 shape = RoundedCornerShape(12.dp)
             )
             .padding(4.dp),
@@ -437,7 +504,7 @@ private fun PeriodSelector(
                     else
                         colorResource(R.color.fence_green)
                 ),
-                shape = RoundedCornerShape(8.dp)
+                shape = RoundedCornerShape(12.dp)
             ) {
                 Text(
                     text = period,
