@@ -41,7 +41,8 @@ fun HomeScreen(
         Column(
             modifier = Modifier
                 .weight(1f)
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // 1. Header
             HomeHeader(onNotificationClick = onShowNotifications)
@@ -66,7 +67,7 @@ fun HomeScreen(
 private fun HomeHeader(onNotificationClick: () -> Unit) {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(0.9f)
             .background(colorResource(R.color.caribbean_green))
             .padding(24.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -113,8 +114,13 @@ private fun BalanceSection() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 24.dp, vertical = 16.dp)
+            .padding(horizontal = 24.dp, vertical = 16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth(0.8f)
+        ) {
         // 2.1 Total Balance / Total Expense Row
         Row(
             modifier = Modifier
@@ -219,6 +225,7 @@ private fun BalanceSection() {
             color = colorResource(R.color.void_black),
             modifier = Modifier.padding(top = 8.dp)
         )
+        }
     }
 }
 
@@ -274,7 +281,6 @@ private fun MainContentCard(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
     ) {
         Surface(
             modifier = Modifier
@@ -286,19 +292,24 @@ private fun MainContentCard(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // 3.1 Income/Expense Box
-                Row(
+                Column(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .background(
-                            color = colorResource(R.color.caribbean_green),
-                            shape = RoundedCornerShape(16.dp)
-                        )
-                        .padding(16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        .fillMaxWidth(0.8f)
                 ) {
+                    // 3.1 Income/Expense Box
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(
+                                color = colorResource(R.color.caribbean_green),
+                                shape = RoundedCornerShape(16.dp)
+                            )
+                            .padding(16.dp),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
                     // Car Icon Box
                     Box(
                         modifier = Modifier
@@ -359,6 +370,7 @@ private fun MainContentCard(
                     modifier = Modifier.padding(top = 16.dp),
                     onNavigateToTransactions = onNavigateToTransactions
                 )
+                }
             }
         }
     }
