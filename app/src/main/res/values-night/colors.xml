@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Theme Colors -->
+    <!-- Greens - Dark Theme (Night) -->
+    <color name="caribbean_green_dark">@color/fence_green</color>
+    <color name="light_green_dark">@color/cyprus</color>
+
+    <!-- Blues - Dark Theme -->
+    <color name="light_blue_dark">@color/vivid_blue</color>
+    <color name="vivid_blue_dark">@color/ocean_blue</color>
+    <color name="ocean_blue_dark">@color/light_blue</color>
+</resources>
+
