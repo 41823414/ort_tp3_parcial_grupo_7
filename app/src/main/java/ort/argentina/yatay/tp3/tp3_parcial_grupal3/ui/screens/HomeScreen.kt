@@ -76,22 +76,30 @@ private fun HomeHeader(onNotificationClick: () -> Unit) {
                 text = "Hi, Welcome Back",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = colorResource(R.color.void_black)
             )
             Text(
                 text = "Good Morning",
                 fontSize = 14.sp,
-                color = Color.White.copy(alpha = 0.8f)
+                color = colorResource(R.color.void_black).copy(alpha = 0.8f)
             )
         }
 
-        IconButton(onClick = onNotificationClick) {
-            Icon(
-                painter = painterResource(R.drawable.bell),
-                contentDescription = "Notifications",
-                tint = Color.White,
-                modifier = Modifier.size(24.dp)
-            )
+        Surface(
+            modifier = Modifier
+                .size(44.dp)
+                .clip(RoundedCornerShape(50)),
+            color = Color.White,
+            shadowElevation = 2.dp
+        ) {
+            IconButton(onClick = onNotificationClick) {
+                Icon(
+                    painter = painterResource(R.drawable.bell),
+                    contentDescription = "Notifications",
+                    tint = colorResource(R.color.caribbean_green),
+                    modifier = Modifier.size(24.dp)
+                )
+            }
         }
     }
 }
