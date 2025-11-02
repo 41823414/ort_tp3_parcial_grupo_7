@@ -131,8 +131,26 @@ fun BalanceSection() {
             // 2.2 Progress Bar
             ProgressBarWithLabel(
                 progress = 0.3f,
-                maxAmount = "$20,000.00"
+                maxAmount = "$20,000.00",
+                percentageText = "30%",
+                barBackgroundColor = colorResource(R.color.void_black),
+                barProgressColor = colorResource(R.color.honeydew),
+                cornerRadius = 12
             )
+
+            Box(
+                modifier = Modifier
+                    .size(24.dp)
+                    .border(1.dp, colorResource(R.color.void_black), RoundedCornerShape(6.dp)),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.tick),
+                    contentDescription = "Expense Down",
+                    tint = colorResource(R.color.void_black),
+                    modifier = Modifier.size(16.dp)
+                )
+            }
 
             // 2.3 Status Text
             Text(
@@ -140,7 +158,7 @@ fun BalanceSection() {
                 fontSize = 12.sp,
                 fontFamily = poppinsFamily,
                 color = colorResource(R.color.void_black),
-                modifier = Modifier.padding(top = 8.dp)
+                modifier = Modifier.padding(top = 8.dp),
             )
         }
     }

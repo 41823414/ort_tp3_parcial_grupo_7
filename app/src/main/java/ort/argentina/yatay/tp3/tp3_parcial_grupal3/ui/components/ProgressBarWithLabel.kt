@@ -2,7 +2,7 @@ package ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,14 +16,21 @@ import ort.argentina.yatay.tp3.tp3_parcial_grupal3.R
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.theme.poppinsFamily
 
 /**
- * Progress Bar con etiqueta
+ * Barra de progreso dinámico con etiqueta de porcentaje y monto máximo
+ * Muestra una barra de fondo oscuro con una barra de progreso blanca en el frente
  */
 @Composable
 fun ProgressBarWithLabel(
     progress: Float,
-    maxAmount: String
+    maxAmount: String,
+    modifier: Modifier = Modifier,
+    percentageText: String? = null,
+    barBackgroundColor: Color = Color.Black.copy(alpha = 0.7f),
+    barProgressColor: Color = Color.White,
+    cornerRadius: Int = 12
 ) {
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(modifier = modifier.fillMaxWidth()) {
+        // Labels row (Percentage and Max Amount)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -32,7 +39,7 @@ fun ProgressBarWithLabel(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "${(progress * 100).toInt()}%",
+                text = percentageText ?: "${(progress * 100).toInt()}%",
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
                 fontFamily = poppinsFamily,
@@ -45,14 +52,41 @@ fun ProgressBarWithLabel(
                 color = Color.White.copy(alpha = 0.8f)
             )
         }
-        LinearProgressIndicator(
-            progress = { progress },
+
+        // Progress bar container (background + progress indicator)
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(8.dp),
-            color = Color.White,
-            trackColor = Color.White.copy(alpha = 0.2f)
-        )
+                .height(24.dp)
+                .background(
+                    color = barProgressColor,
+                    shape = RoundedCornerShape(cornerRadius.dp)
+                ),
+            contentAlignment = Alignment.CenterStart
+        ) {
+            // Background (dark bar) on top
+            Box(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth(progress)
+                    .background(
+                        color = barBackgroundColor,
+                        shape = RoundedCornerShape(cornerRadius.dp)
+                    )
+            )
+
+            // Centered text with max amount (on top of both bars)
+            Text(
+                text = maxAmount,
+                fontSize = 12.sp,
+                fontWeight = FontWeight.SemiBold,
+                fontFamily = poppinsFamily,
+                color = colorResource(R.color.void_black),
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .padding(horizontal = 8.dp)
+            )
+        }
     }
 }
 
