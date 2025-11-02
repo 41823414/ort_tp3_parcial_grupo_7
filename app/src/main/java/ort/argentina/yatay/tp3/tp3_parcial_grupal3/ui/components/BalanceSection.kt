@@ -135,31 +135,35 @@ fun BalanceSection() {
                 percentageText = "30%",
                 barBackgroundColor = colorResource(R.color.void_black),
                 barProgressColor = colorResource(R.color.honeydew),
-                cornerRadius = 12
+                cornerRadius = 50,
+                percentageTextColor = Color.White,
+                amountTextColor = colorResource(R.color.void_black)
             )
 
-            Box(
-                modifier = Modifier
-                    .size(24.dp)
-                    .border(1.dp, colorResource(R.color.void_black), RoundedCornerShape(6.dp)),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.tick),
-                    contentDescription = "Expense Down",
-                    tint = colorResource(R.color.void_black),
-                    modifier = Modifier.size(16.dp)
+            Row(
+                modifier = Modifier.padding(top = 8.dp),) {
+                Box(
+                    modifier = Modifier
+                        .size(16.dp)
+                        .border(1.dp, colorResource(R.color.void_black), RoundedCornerShape(4.dp)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        painter = painterResource(R.drawable.tick),
+                        contentDescription = "Expense Down",
+                        tint = colorResource(R.color.void_black),
+                        modifier = Modifier.size(15.dp)
+                    )
+                }
+                // 2.3 Status Text
+                Text(
+                    modifier = Modifier.padding(start = 4.dp, bottom = 1.dp),
+                    text = "30% Of Your Expenses, Looks Good.",
+                    fontSize = 12.sp,
+                    fontFamily = poppinsFamily,
+                    color = colorResource(R.color.void_black)
                 )
             }
-
-            // 2.3 Status Text
-            Text(
-                text = "30% Of Your Expenses, Looks Good.",
-                fontSize = 12.sp,
-                fontFamily = poppinsFamily,
-                color = colorResource(R.color.void_black),
-                modifier = Modifier.padding(top = 8.dp),
-            )
         }
     }
 }

@@ -10,14 +10,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.R
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.theme.poppinsFamily
 
 /**
- * Barra de progreso dinámico con etiqueta de porcentaje y monto máximo
- * Muestra una barra de fondo oscuro con una barra de progreso blanca en el frente
+ * Barra de progreso dinámico con estructura de dos capas:
+ * - Barra negra (fondo) con % a izquierda, cubre todo el ancho
+ * - Barra blanca desde la derecha ocupando (100% - progress)% del ancho, con monto total a la derecha
  */
 @Composable
 fun ProgressBarWithLabel(
@@ -25,67 +27,60 @@ fun ProgressBarWithLabel(
     maxAmount: String,
     modifier: Modifier = Modifier,
     percentageText: String? = null,
-    barBackgroundColor: Color = Color.Black.copy(alpha = 0.7f),
-    barProgressColor: Color = Color.White,
-    cornerRadius: Int = 12
+    barBackgroundColor: Color = colorResource(R.color.void_black),
+    barProgressColor: Color = colorResource(R.color.honeydew),
+    cornerRadius: Int = 50,
+    percentageTextColor: Color = Color.White,
+    amountTextColor: Color = colorResource(R.color.void_black)
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
-        // Labels row (Percentage and Max Amount)
-        Row(
+        // Main progress bar container - Black background covering full width
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 8.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+                .height(32.dp)
+                .background(
+                    color = barBackgroundColor,
+                    shape = RoundedCornerShape(cornerRadius.dp)
+                ),
+            contentAlignment = Alignment.CenterStart
         ) {
+            // Percentage text (left aligned inside black bar)
             Text(
                 text = percentageText ?: "${(progress * 100).toInt()}%",
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
                 fontFamily = poppinsFamily,
-                color = Color.White
+                color = percentageTextColor,
+                modifier = Modifier
+                    .align(Alignment.CenterStart)
+                    .padding(start = 12.dp)
             )
-            Text(
-                text = maxAmount,
-                fontSize = 12.sp,
-                fontFamily = poppinsFamily,
-                color = Color.White.copy(alpha = 0.8f)
-            )
-        }
 
-        // Progress bar container (background + progress indicator)
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(24.dp)
-                .background(
-                    color = barProgressColor,
-                    shape = RoundedCornerShape(cornerRadius.dp)
-                ),
-            contentAlignment = Alignment.CenterStart
-        ) {
-            // Background (dark bar) on top
+            // White progress bar (from right side, width = 100% - progress)
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .fillMaxWidth(progress)
+                    .fillMaxWidth(1f - progress)
+                    .align(Alignment.CenterEnd)
                     .background(
-                        color = barBackgroundColor,
+                        color = barProgressColor,
                         shape = RoundedCornerShape(cornerRadius.dp)
-                    )
-            )
-
-            // Centered text with max amount (on top of both bars)
-            Text(
-                text = maxAmount,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.SemiBold,
-                fontFamily = poppinsFamily,
-                color = colorResource(R.color.void_black),
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .padding(horizontal = 8.dp)
-            )
+                    ),
+                contentAlignment = Alignment.CenterEnd
+            ) {
+                // Amount text (right aligned inside white bar)
+                Text(
+                    text = maxAmount,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    fontFamily = poppinsFamily,
+                    color = amountTextColor,
+                    textAlign = TextAlign.End,
+                    modifier = Modifier
+                        .padding(end = 12.dp)
+                )
+            }
         }
     }
 }
