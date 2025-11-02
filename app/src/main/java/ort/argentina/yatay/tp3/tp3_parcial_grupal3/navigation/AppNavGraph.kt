@@ -19,7 +19,7 @@ import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.balance.AccountBal
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.transaction.TransactionScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.categories.CategoriesScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.ProfileScreen
-import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.notifications.NotificationsDialog
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.notifications.NotificationsScreen
 
 /**
  * NAVEGACIÓN - Grafo de navegación de la app
@@ -30,7 +30,6 @@ fun AppNavGraph(
     modifier: Modifier = Modifier,
     startDestination: String = Screen.Launch.route
 ) {
-    var showNotifications by remember { mutableStateOf(false) }
 
     NavHost(
         navController = navController,
@@ -108,7 +107,7 @@ fun AppNavGraph(
                 onNavigateToTransactions = { navController.navigate(Screen.Transaction.route) },
                 onNavigateToCategories = { navController.navigate(Screen.Categories.route) },
                 onNavigateToProfile = { navController.navigate(Screen.Profile.route) },
-                onShowNotifications = { showNotifications = true }
+                onShowNotifications = { navController.navigate(Screen.Notifications.route) }
             )
         }
 
@@ -144,13 +143,13 @@ fun AppNavGraph(
                 }
             )
         }
-    }
 
-    // Notifications Dialog (se muestra por encima de cualquier pantalla)
-    if (showNotifications) {
-        NotificationsDialog(
-            onDismiss = { showNotifications = false }
-        )
+        // Notifications Screen
+        composable(Screen.Notifications.route) {
+            NotificationsScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
     }
 }
 

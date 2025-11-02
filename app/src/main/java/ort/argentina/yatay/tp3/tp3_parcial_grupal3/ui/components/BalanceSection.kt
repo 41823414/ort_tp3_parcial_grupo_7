@@ -13,6 +13,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -66,7 +67,7 @@ fun BalanceSection() {
                             )
                         }
                         Text(
-                            text = "Total Balance",
+                            text = stringResource(R.string.balance_title),
                             fontSize = 12.sp,
                             fontFamily = poppinsFamily,
                             color = colorResource(R.color.void_black)
@@ -112,7 +113,7 @@ fun BalanceSection() {
                             )
                         }
                         Text(
-                            text = "Total Expense",
+                            text = stringResource(R.string.expense_title),
                             fontSize = 12.sp,
                             fontFamily = poppinsFamily,
                             color = colorResource(R.color.void_black)
@@ -158,7 +159,7 @@ fun BalanceSection() {
                 // 2.3 Status Text
                 Text(
                     modifier = Modifier.padding(start = 4.dp, bottom = 1.dp),
-                    text = "30% Of Your Expenses, Looks Good.",
+                    text = stringResource(R.string.expenses_status),
                     fontSize = 12.sp,
                     fontFamily = poppinsFamily,
                     color = colorResource(R.color.void_black)
