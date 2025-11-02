@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.R
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.theme.poppinsFamily
 
 /**
  * Home Screen - Pantalla principal de la aplicación
@@ -78,11 +79,13 @@ private fun HomeHeader(onNotificationClick: () -> Unit) {
                 text = "Hi, Welcome Back",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
+                fontFamily = poppinsFamily,
                 color = colorResource(R.color.void_black)
             )
             Text(
                 text = "Good Morning",
                 fontSize = 14.sp,
+                fontFamily = poppinsFamily,
                 color = colorResource(R.color.void_black).copy(alpha = 0.8f)
             )
         }
@@ -155,6 +158,7 @@ private fun BalanceSection() {
                     Text(
                         text = "Total Balance",
                         fontSize = 12.sp,
+                        fontFamily = poppinsFamily,
                         color = colorResource(R.color.void_black)
                     )
                 }
@@ -162,6 +166,7 @@ private fun BalanceSection() {
                     text = "$7,783.00",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
+                    fontFamily = poppinsFamily,
                     color = colorResource(R.color.honeydew)
                 )
             }
@@ -199,6 +204,7 @@ private fun BalanceSection() {
                     Text(
                         text = "Total Expense",
                         fontSize = 12.sp,
+                        fontFamily = poppinsFamily,
                         color = colorResource(R.color.void_black)
                     )
                 }
@@ -206,6 +212,7 @@ private fun BalanceSection() {
                     text = "-$1,187.40",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
+                    fontFamily = poppinsFamily,
                     color = colorResource(R.color.ocean_blue)
                 )
             }
@@ -221,6 +228,7 @@ private fun BalanceSection() {
         Text(
             text = "30% Of Your Expenses, Looks Good.",
             fontSize = 12.sp,
+            fontFamily = poppinsFamily,
             color = colorResource(R.color.void_black),
             modifier = Modifier.padding(top = 8.dp)
         )
@@ -249,11 +257,13 @@ private fun ProgressBarWithLabel(
                 text = "${(progress * 100).toInt()}%",
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
+                fontFamily = poppinsFamily,
                 color = Color.White
             )
             Text(
                 text = maxAmount,
                 fontSize = 12.sp,
+                fontFamily = poppinsFamily,
                 color = Color.White.copy(alpha = 0.8f)
             )
         }
@@ -279,20 +289,21 @@ private fun MainContentCard(
 ) {
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxSize()
             .padding(top = 16.dp)
     ) {
         Surface(
             modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(48.dp)),
+                .fillMaxSize()
+                .clip(RoundedCornerShape(topStart = 48.dp, topEnd = 48.dp)),
             color = colorResource(R.color.honeydew),
             shadowElevation = 4.dp
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 16.dp, bottom=64.dp),
+                    .fillMaxSize()
+                    .padding(top = 16.dp, bottom = 16.dp)
+                    .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Column(
@@ -335,6 +346,7 @@ private fun MainContentCard(
                                 text = "Savings\nOn Goals",
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.Bold,
+                                fontFamily = poppinsFamily,
                                 color = colorResource(R.color.void_black),
                                 textAlign = androidx.compose.ui.text.style.TextAlign.Center
                             )
@@ -375,12 +387,14 @@ private fun MainContentCard(
                                     Text(
                                         text = "Revenue Last Week",
                                         fontSize = 11.sp,
+                                        fontFamily = poppinsFamily,
                                         color = colorResource(R.color.void_black)
                                     )
                                     Text(
                                         text = "$4,000.00",
                                         fontSize = 20.sp,
                                         fontWeight = FontWeight.Bold,
+                                        fontFamily = poppinsFamily,
                                         color = colorResource(R.color.void_black)
                                     )
                                 }
@@ -412,12 +426,14 @@ private fun MainContentCard(
                                     Text(
                                         text = "Food Last Week",
                                         fontSize = 11.sp,
+                                        fontFamily = poppinsFamily,
                                         color = colorResource(R.color.void_black)
                                     )
                                     Text(
                                         text = "-$100.00",
                                         fontSize = 20.sp,
                                         fontWeight = FontWeight.Bold,
+                                        fontFamily = poppinsFamily,
                                         color = colorResource(R.color.vivid_blue)
                                     )
                                 }
@@ -509,7 +525,8 @@ private fun PeriodSelector(
                 Text(
                     text = period,
                     fontSize = 12.sp,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.SemiBold,
+                    fontFamily = poppinsFamily
                 )
             }
         }
@@ -525,19 +542,20 @@ private fun TransactionList(
     onNavigateToTransactions: () -> Unit
 ) {
     val transactions = listOf(
-        Triple("Salary", "18:27 - April 30", "$4,000,00") to painterResource(R.drawable.enter),
-        Triple("Groceries", "17:00 - April 24", "-$100,00") to painterResource(R.drawable.bag),
-        Triple("Rent", "8:30 - April 15", "-$674,40") to painterResource(R.drawable.house_keys)
+        Triple("Salary", "18:27 - April 30", "$4,000.00") to Triple(painterResource(R.drawable.cash), colorResource(R.color.light_blue), "Monthly"),
+        Triple("Groceries", "17:00 - April 24", "-$100.00") to Triple(painterResource(R.drawable.food_bag), colorResource(R.color.vivid_blue), "Pantry"),
+        Triple("Rent", "8:30 - April 15", "-$674.40") to Triple(painterResource(R.drawable.hand_key), colorResource(R.color.ocean_blue), "Rent")
     )
 
     Column(modifier = modifier.fillMaxWidth()) {
-        transactions.forEach { (transactionData, icon) ->
+        transactions.forEach { (transactionData, iconData) ->
             TransactionRow(
                 title = transactionData.first,
                 dateTime = transactionData.second,
                 amount = transactionData.third,
-                icon = icon,
-                period = "Monthly"
+                icon = iconData.first,
+                iconColor = iconData.second,
+                typeOfCharge = iconData.third
             )
             if (transactionData != transactions.last().first) {
                 HorizontalDivider(
@@ -558,66 +576,93 @@ private fun TransactionRow(
     dateTime: String,
     amount: String,
     icon: androidx.compose.ui.graphics.painter.Painter,
-    period: String
+    iconColor: Color = colorResource(R.color.light_blue),
+    typeOfCharge: String
 ) {
+    // Parse amount to determine color
+    val amountValue = amount.replace(Regex("[^0-9.-]"), "").toDoubleOrNull() ?: 0.0
+    val amountColor = if (amountValue >= 0)
+        colorResource(R.color.fence_green)
+    else
+        colorResource(R.color.ocean_blue)
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 12.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(
-            modifier = Modifier.weight(1f),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalAlignment = Alignment.CenterVertically
+        // Icon
+        Surface(
+            modifier = Modifier.size(40.dp),
+            color = iconColor,
+            shape = RoundedCornerShape(8.dp)
         ) {
-            Surface(
-                modifier = Modifier.size(40.dp),
-                color = colorResource(R.color.light_blue),
-                shape = RoundedCornerShape(8.dp)
-            ) {
-                Icon(
-                    painter = icon,
-                    contentDescription = title,
-                    tint = Color.White,
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .size(24.dp)
-                )
-            }
-
-            Column {
-                Text(
-                    text = title,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = colorResource(R.color.fence_green)
-                )
-                Text(
-                    text = dateTime,
-                    fontSize = 12.sp,
-                    color = colorResource(R.color.cyprus).copy(alpha = 0.7f)
-                )
-            }
+            Icon(
+                painter = icon,
+                contentDescription = title,
+                tint = Color.White,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .size(24.dp)
+            )
         }
 
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalAlignment = Alignment.CenterVertically
+        // Title + DateTime
+        Column(
+            modifier = Modifier.width(90.dp)
         ) {
             Text(
-                text = period,
-                fontSize = 12.sp,
-                color = colorResource(R.color.cyprus).copy(alpha = 0.7f)
-            )
-            Text(
-                text = amount,
+                text = title,
                 fontSize = 14.sp,
-                fontWeight = FontWeight.Bold,
-                color = colorResource(R.color.cyprus)
+                fontWeight = FontWeight.SemiBold,
+                fontFamily = poppinsFamily,
+                color = colorResource(R.color.fence_green)
+            )
+            Text(
+                text = dateTime,
+                fontSize = 11.sp,
+                fontFamily = poppinsFamily,
+                color = colorResource(R.color.light_blue)
             )
         }
+
+        // Vertical Divider
+        Box(
+            modifier = Modifier
+                .width(1.dp)
+                .height(40.dp)
+                .background(colorResource(R.color.light_green))
+        )
+
+        // Type of Charge
+        Text(
+            text = typeOfCharge,
+            fontSize = 12.sp,
+            fontFamily = poppinsFamily,
+            color = colorResource(R.color.fence_green),
+            modifier = Modifier.width(60.dp)
+        )
+
+        // Vertical Divider
+        Box(
+            modifier = Modifier
+                .width(1.dp)
+                .height(40.dp)
+                .background(colorResource(R.color.light_green))
+        )
+
+        // Amount with dynamic color
+        Text(
+            text = amount,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+            fontFamily = poppinsFamily,
+            color = amountColor,
+            modifier = Modifier.width(80.dp),
+            textAlign = androidx.compose.ui.text.style.TextAlign.End
+        )
     }
 }
 
