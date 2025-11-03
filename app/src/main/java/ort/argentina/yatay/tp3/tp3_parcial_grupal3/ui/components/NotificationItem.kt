@@ -61,30 +61,14 @@ fun NotificationItem(
                 .padding(top = 4.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            // Title and Date Row
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.Top
-            ) {
-                // Title
-                Text(
-                    text = title,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = poppinsFamily,
-                    color = colorResource(R.color.void_black),
-                    modifier = Modifier.weight(1f)
-                )
-
-                // Date/Time (Right aligned)
-                Text(
-                    text = dateTime,
-                    fontSize = 11.sp,
-                    fontFamily = poppinsFamily,
-                    color = colorResource(R.color.ocean_blue)
-                )
-            }
+            // Title
+            Text(
+                text = title,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = poppinsFamily,
+                color = colorResource(R.color.void_black)
+            )
 
             // Description
             Text(
@@ -92,6 +76,15 @@ fun NotificationItem(
                 fontSize = 12.sp,
                 fontFamily = poppinsFamily,
                 color = colorResource(R.color.void_black).copy(alpha = 0.7f)
+            )
+
+            // Date/Time (Right aligned)
+            Text(
+                text = dateTime,
+                fontSize = 11.sp,
+                fontFamily = poppinsFamily,
+                color = colorResource(R.color.ocean_blue),
+                modifier = Modifier.align(Alignment.End)
             )
         }
     }

@@ -93,7 +93,7 @@ fun MainContentCard(
                                 fontWeight = FontWeight.Bold,
                                 fontFamily = poppinsFamily,
                                 color = colorResource(R.color.void_black),
-                                textAlign = TextAlign.Center
+                                textAlign = TextAlign.Center,
                             )
                         }
 
