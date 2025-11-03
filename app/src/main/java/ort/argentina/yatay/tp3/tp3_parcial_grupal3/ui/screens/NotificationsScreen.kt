@@ -11,6 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -103,41 +105,46 @@ fun NotificationsScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(colorResource(R.color.honeydew))
+            .background(colorResource(R.color.caribbean_green))
     ) {
         // Header
-        Row(
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(colorResource(R.color.caribbean_green))
-                .padding(horizontal = 16.dp, vertical = 16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
         ) {
-            IconButton(onClick = onNavigateBack) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_launcher_foreground),
-                    contentDescription = "Back",
-                    tint = Color.White,
-                    modifier = Modifier.size(24.dp)
-                )
-            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                IconButton(onClick = onNavigateBack) {
+                    Icon(
+                        painter = painterResource(R.drawable.arrow_down),
+                        contentDescription = "Back",
+                        tint = Color.White,
+                        modifier = Modifier.size(24.dp).rotate(90f)
+                    )
+                }
 
-            Text(
-                text = stringResource(R.string.notifications_title),
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                fontFamily = poppinsFamily,
-                color = Color.White
-            )
-
-            IconButton(onClick = {}) {
-                Icon(
-                    painter = painterResource(R.drawable.bell),
-                    contentDescription = "Notifications",
-                    tint = Color.White,
-                    modifier = Modifier.size(24.dp)
+                Text(
+                    text = stringResource(R.string.notifications_title),
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = poppinsFamily,
+                    color = Color.White
                 )
+
+                IconButton(onClick = {}) {
+                    Icon(
+                        painter = painterResource(R.drawable.bell),
+                        contentDescription = "Notifications",
+                        tint = Color.White,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
             }
         }
 
@@ -145,10 +152,9 @@ fun NotificationsScreen(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(
-                    color = Color.White,
-                    shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
-                )
+                .fillMaxHeight()
+                .clip(RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp))
+                .background(colorResource(R.color.honeydew))
         ) {
             LazyColumn(
                 modifier = Modifier

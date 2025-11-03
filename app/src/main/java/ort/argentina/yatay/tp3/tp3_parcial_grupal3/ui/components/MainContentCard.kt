@@ -3,6 +3,7 @@ package ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -10,8 +11,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
@@ -59,6 +60,7 @@ fun MainContentCard(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
+                            .height(170.dp)
                             .background(
                                 color = colorResource(R.color.caribbean_green),
                                 shape = RoundedCornerShape(16.dp)
@@ -97,11 +99,10 @@ fun MainContentCard(
                             )
                         }
 
-                        // Vertical divider
                         Box(
                             modifier = Modifier
                                 .width(1.dp)
-                                .height(100.dp)
+                                .fillMaxHeight()
                                 .background(colorResource(R.color.light_green))
                         )
 
