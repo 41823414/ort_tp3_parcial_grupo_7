@@ -17,6 +17,8 @@ sealed class Screen(val route: String) {
     object Transaction : Screen("transaction")
     object Categories : Screen("categories")
     object Profile : Screen("profile")
+    object ProfileEdit : Screen("profile_edit")
+    object Security : Screen("security")
 
     // Notifications (Dialog - no tiene ruta de navegación)
 
@@ -32,6 +34,8 @@ sealed class Screen(val route: String) {
             Transaction.route -> Transaction
             Categories.route -> Categories
             Profile.route -> Profile
+            ProfileEdit.route -> ProfileEdit
+            Security.route -> Security
             else -> Launch
         }
     }

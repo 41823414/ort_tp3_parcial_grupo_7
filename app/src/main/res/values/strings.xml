@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">TP3 Parcial Grupal</string>
+
+    <!-- Launch Screen -->
+    <string name="launch_loading">Cargando…</string>
+
+    <!-- OnBoarding Screen -->
+    <string name="onboarding_title">Bienvenido</string>
+    <string name="onboarding_skip">Saltar</string>
+    <string name="onboarding_next">Siguiente</string>
+    <string name="onboarding_get_started">Comenzar</string>
+
+    <!-- Login Screen -->
+    <string name="login_title">Iniciar Sesión</string>
+    <string name="login_email">Correo electrónico</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_button">Ingresar</string>
+    <string name="login_forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="login_signup">¿No tienes cuenta? Regístrate</string>
+
+    <!-- Sign Up Screen -->
+    <string name="signup_title">Crear Cuenta</string>
+    <string name="signup_name">Nombre completo</string>
+    <string name="signup_email">Correo electrónico</string>
+    <string name="signup_password">Contraseña</string>
+    <string name="signup_confirm_password">Confirmar contraseña</string>
+    <string name="signup_button">Registrarse</string>
+    <string name="signup_login">¿Ya tienes cuenta? Inicia sesión</string>
+
+    <!-- Forgot Password Screen -->
+    <string name="forgot_password_title">Recuperar Contraseña</string>
+    <string name="forgot_password_description">Ingresa tu correo electrónico para recuperar tu contraseña</string>
+    <string name="forgot_password_email">Correo electrónico</string>
+    <string name="forgot_password_button">Enviar</string>
+    <string name="forgot_password_back">Volver</string>
+
+    <!-- Home Screen -->
+    <string name="home_title">Inicio</string>
+    <string name="home_welcome">Bienvenido</string>
+
+    <!-- Account Balance Screen -->
+    <string name="balance_title">Balance de Cuenta</string>
+    <string name="balance_available">Saldo disponible</string>
+    <string name="balance_total">Saldo total</string>
+
+    <!-- Transaction Screen -->
+    <string name="transaction_title">Transacciones</string>
+    <string name="transaction_new">Nueva transacción</string>
+    <string name="transaction_history">Historial</string>
+
+    <!-- Categories Screen -->
+    <string name="categories_title">Categorías</string>
+    <string name="categories_add">Agregar categoría</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_title">Perfil</string>
+    <string name="profile_edit">Editar perfil</string>
+    <string name="profile_logout">Cerrar sesión</string>
+
+    <!-- Notifications -->
+    <string name="notifications_title">Notificaciones</string>
+    <string name="notifications_empty">No tienes notificaciones</string>
+    <string name="notifications_mark_read">Marcar como leída</string>
+
+    <!-- Common -->
+    <string name="common_cancel">Cancelar</string>
+    <string name="common_save">Guardar</string>
+    <string name="common_delete">Eliminar</string>
+    <string name="common_edit">Editar</string>
+    <string name="common_confirm">Confirmar</string>
+    <string name="common_error">Error</string>
+    <string name="common_success">Éxito</string>
+    <string name="common_loading">Cargando…</string>
+</resources>
+

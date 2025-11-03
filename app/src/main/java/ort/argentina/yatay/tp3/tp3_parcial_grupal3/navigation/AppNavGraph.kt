@@ -19,6 +19,8 @@ import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.balance.AccountBal
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.transaction.TransactionScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.categories.CategoriesScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.ProfileScreen
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.ProfileScreenEdit
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.SecurityScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.notifications.NotificationsDialog
 
 /**
@@ -137,11 +139,32 @@ fun AppNavGraph(
         composable(Screen.Profile.route) {
             ProfileScreen(
                 onNavigateBack = { navController.popBackStack() },
+                onEditProfile = { navController.navigate(Screen.ProfileEdit.route) },
+                onSecurity = { navController.navigate(Screen.Security.route) },
+                onSetting = { /* TODO: Implementar navegación a Setting */ },
+                onHelp = { /* TODO: Implementar navegación a Help */ },
                 onLogout = {
                     navController.navigate(Screen.Login.route) {
                         popUpTo(0) { inclusive = true }
                     }
                 }
+            )
+        }
+
+        // Profile Edit Screen
+        composable(Screen.ProfileEdit.route) {
+            ProfileScreenEdit(
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
+
+        // Security Screen
+        composable(Screen.Security.route) {
+            SecurityScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onChangePin = { /* TODO: Implementar navegación a Change Pin */ },
+                onFingerprint = { /* TODO: Implementar navegación a Fingerprint */ },
+                onTermsAndConditions = { /* TODO: Implementar navegación a Terms And Conditions */ }
             )
         }
     }
