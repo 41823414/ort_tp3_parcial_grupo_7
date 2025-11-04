@@ -9,11 +9,16 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.launch.LaunchScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.onboarding.OnBoardingScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.auth.LoginScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.auth.SignUpScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.auth.ForgotPasswordScreen
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.auth.SecurityPinScreen
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.auth.NewPasswordScreen
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.auth.PasswordChangedScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.home.HomeScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.balance.AccountBalanceScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.transaction.TransactionScreen
@@ -39,8 +44,18 @@ fun AppNavGraph(
         // Launch Screen
         composable(Screen.Launch.route) {
             LaunchScreen(
-                onNavigateToOnBoarding = {
-                    navController.navigate(Screen.OnBoarding.route) {
+                onNavigateToLogin = {
+                    navController.navigate(Screen.Login.route) {
+                        popUpTo(Screen.Launch.route) { inclusive = true }
+                    }
+                },
+                onNavigateToSignUp = {
+                    navController.navigate(Screen.SignUp.route) {
+                        popUpTo(Screen.Launch.route) { inclusive = true }
+                    }
+                },
+                onNavigateToForgotPassword = {
+                    navController.navigate(Screen.ForgotPassword.route) {
                         popUpTo(Screen.Launch.route) { inclusive = true }
                     }
                 },
@@ -96,7 +111,73 @@ fun AppNavGraph(
         // Forgot Password Screen
         composable(Screen.ForgotPassword.route) {
             ForgotPasswordScreen(
-                onNavigateBack = { navController.popBackStack() }
+                onNextStep = { email ->
+                    navController.navigate(Screen.SecurityPin.createRoute(email))
+                },
+                onNavigateToSignUp = {
+                    navController.navigate(Screen.SignUp.route)
+                },
+                onNavigateToLogin = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        // Security Pin Screen
+        composable(
+            route = Screen.SecurityPin.route,
+            arguments = listOf(
+                navArgument("email") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                }
+            )
+        ) { backStackEntry ->
+            val email = backStackEntry.arguments?.getString("email") ?: ""
+            SecurityPinScreen(
+                email = email,
+                onAcceptPin = { pin ->
+                    navController.navigate(Screen.NewPassword.createRoute(email))
+                },
+                onSendAgain = {
+                    // TODO: Implementar lógica de reenvío
+                },
+                onNavigateToSignUp = {
+                    navController.navigate(Screen.SignUp.route)
+                }
+            )
+        }
+
+        // New Password Screen
+        composable(
+            route = Screen.NewPassword.route,
+            arguments = listOf(
+                navArgument("email") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                }
+            )
+        ) { backStackEntry ->
+            val email = backStackEntry.arguments?.getString("email") ?: ""
+            NewPasswordScreen(
+                email = email,
+                onChangePasswordSuccess = {
+                    navController.navigate(Screen.PasswordChanged.route) {
+                        // Limpiar el back stack hasta Login
+                        popUpTo(Screen.Login.route) { inclusive = false }
+                    }
+                }
+            )
+        }
+
+        // Password Changed Screen
+        composable(Screen.PasswordChanged.route) {
+            PasswordChangedScreen(
+                onGoLogin = {
+                    navController.navigate(Screen.Login.route) {
+                        popUpTo(0) { inclusive = true }
+                    }
+                }
             )
         }
 
