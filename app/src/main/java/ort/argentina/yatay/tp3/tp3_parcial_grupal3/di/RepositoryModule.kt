@@ -8,8 +8,10 @@ import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.repository.ExampleReposi
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.repository.ExampleRepositoryInterface
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.repository.TaskRepositoryImpl
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.repository.UserRepositoryImpl
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.repository.AuthRepositoryImpl
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.domain.repository.TaskRepository
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.domain.repository.UserRepository
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.domain.repository.AuthRepository
 import javax.inject.Singleton
 
 /**
@@ -48,5 +50,14 @@ abstract class RepositoryModule {
     abstract fun bindTaskRepository(
         implementation: TaskRepositoryImpl
     ): TaskRepository
+
+    /**
+     * Vincula AuthRepositoryImpl a AuthRepository (dominio)
+     */
+    @Binds
+    @Singleton
+    abstract fun bindAuthRepository(
+        implementation: AuthRepositoryImpl
+    ): AuthRepository
 }
 
