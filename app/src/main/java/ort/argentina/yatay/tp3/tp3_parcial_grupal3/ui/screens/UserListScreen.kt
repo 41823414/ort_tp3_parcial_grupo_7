@@ -12,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.local.entity.UserEntity
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.domain.model.User
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.viewmodel.UserViewModel
 
 /**
@@ -160,7 +160,7 @@ fun UserListScreen(
 
 @Composable
 fun UserItem(
-    user: UserEntity,
+    user: User,
     onDelete: () -> Unit
 ) {
     Card(
