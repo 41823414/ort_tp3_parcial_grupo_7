@@ -29,6 +29,8 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.zIndex
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.R
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.theme.poppinsFamily
+import androidx.hilt.navigation.compose.hiltViewModel
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.viewmodel.AuthViewModel
 
 /**
  * 3.0-A: Login Screen - Pantalla de inicio de sesión
@@ -39,6 +41,8 @@ fun LoginScreen(
     onNavigateToForgotPassword: () -> Unit = {},
     onNavigateToHome: () -> Unit = {}
 ) {
+    val authViewModel: AuthViewModel = hiltViewModel()
+    val loginState by authViewModel.state.collectAsState()
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
@@ -198,7 +202,9 @@ fun LoginScreen(
                 
                 // Botón Log In (píldora centrada)
                 Button(
-                    onClick = onNavigateToHome,
+                    onClick = {
+                        authViewModel.login(username, password)
+                    },
                     modifier = Modifier
                         .fillMaxWidth(0.72f)
                         .height(52.dp),
@@ -214,6 +220,13 @@ fun LoginScreen(
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
                     )
+                }
+
+                // Navegar al Home cuando el login sea exitoso
+                LaunchedEffect(loginState) {
+                    if (loginState is AuthViewModel.LoginState.Success) {
+                        onNavigateToHome()
+                    }
                 }
                 
                 Spacer(modifier = Modifier.height(8.dp))
