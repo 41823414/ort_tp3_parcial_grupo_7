@@ -2,6 +2,8 @@ package ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.remote.api
 
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.remote.dto.UserDto
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.remote.dto.PostDto
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.remote.dto.AuthLoginRequest
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.remote.dto.AuthLoginResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -10,6 +12,13 @@ import retrofit2.http.*
  * Define los endpoints de la API REST
  */
 interface ApiService {
+
+    /**
+     * Login (mockeado por interceptor)
+     * POST https://<base>/auth/login
+     */
+    @POST("auth/login")
+    suspend fun login(@Body body: AuthLoginRequest): Response<AuthLoginResponse>
 
     /**
      * Obtener lista de usuarios
