@@ -50,11 +50,115 @@ fun SignUpScreen(
     var passwordVisible by remember { mutableStateOf(false) }
     var confirmPasswordVisible by remember { mutableStateOf(false) }
     
-    // Validaciones básicas
-    val isEmailValid = email.isNotBlank() && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    val isPasswordValid = password.isNotBlank() && password.length >= 6
-    val isPasswordMatch = password == confirmPassword
-    val isFormValid = isEmailValid && isPasswordValid && isPasswordMatch
+    // Funciones de validación
+    fun isValidFullName(name: String): Boolean {
+        val trimmed = name.trim()
+        if (trimmed.isEmpty()) return false
+        // Mínimo 2 palabras, solo letras y espacios
+        val words = trimmed.split("\\s+".toRegex()).filter { it.isNotBlank() }
+        if (words.size < 2) return false
+        // Solo letras, espacios y acentos
+        return trimmed.matches(Regex("^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\\s]+$"))
+    }
+    
+    fun isValidEmail(email: String): Boolean {
+        return email.isNotBlank() && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+    
+    fun isValidMobileNumber(phone: String): Boolean {
+        if (phone.isBlank()) return false
+        // Acepta: +XX XXXX XXXX, (XX) XXXX-XXXX, XXXX-XXXX, números con espacios/guión
+        val cleaned = phone.replace(Regex("[\\s\\-\\(\\)]"), "")
+        // Mínimo 10 dígitos, máximo 15 (incluye código de país)
+        return cleaned.matches(Regex("^\\+?[0-9]{10,15}$"))
+    }
+    
+    fun isValidDateOfBirth(date: String): Boolean {
+        if (date.isBlank()) return false
+        // Formato DD/MM/YYYY
+        val pattern = Regex("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(\\d{4})$")
+        if (!date.matches(pattern)) return false
+        
+        // Validar que la fecha sea real
+        val parts = date.split("/")
+        val day = parts[0].toIntOrNull() ?: return false
+        val month = parts[1].toIntOrNull() ?: return false
+        val year = parts[2].toIntOrNull() ?: return false
+        
+        // Validar año razonable (1900-2024)
+        if (year < 1900 || year > 2024) return false
+        
+        // Validar días por mes
+        val daysInMonth = when (month) {
+            1, 3, 5, 7, 8, 10, 12 -> 31
+            4, 6, 9, 11 -> 30
+            2 -> if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) 29 else 28
+            else -> return false
+        }
+        
+        return day in 1..daysInMonth
+    }
+    
+    fun isValidPassword(password: String): Boolean {
+        if (password.length < 8) return false
+        // Debe tener al menos: 1 mayúscula, 1 minúscula, 1 número
+        val hasUpperCase = password.any { it.isUpperCase() }
+        val hasLowerCase = password.any { it.isLowerCase() }
+        val hasDigit = password.any { it.isDigit() }
+        return hasUpperCase && hasLowerCase && hasDigit
+    }
+    
+    // Validaciones por campo
+    val isFullNameValid = remember(fullName) { fullName.isBlank() || isValidFullName(fullName) }
+    val fullNameError = remember(fullName) {
+        if (fullName.isBlank()) null
+        else if (!isValidFullName(fullName)) "Debe contener al menos 2 palabras (solo letras)"
+        else null
+    }
+    
+    val isEmailValid = remember(email) { email.isBlank() || isValidEmail(email) }
+    val emailError = remember(email) {
+        if (email.isBlank()) null
+        else if (!isValidEmail(email)) "Email inválido"
+        else null
+    }
+    
+    val isMobileNumberValid = remember(mobileNumber) { mobileNumber.isBlank() || isValidMobileNumber(mobileNumber) }
+    val mobileNumberError = remember(mobileNumber) {
+        if (mobileNumber.isBlank()) null
+        else if (!isValidMobileNumber(mobileNumber)) "Formato inválido (ej: +54 11 1234-5678)"
+        else null
+    }
+    
+    val isDateOfBirthValid = remember(dateOfBirth) { dateOfBirth.isBlank() || isValidDateOfBirth(dateOfBirth) }
+    val dateOfBirthError = remember(dateOfBirth) {
+        if (dateOfBirth.isBlank()) null
+        else if (!isValidDateOfBirth(dateOfBirth)) "Formato inválido (DD/MM/YYYY)"
+        else null
+    }
+    
+    val isPasswordValid = remember(password) { password.isBlank() || isValidPassword(password) }
+    val passwordError = remember(password) {
+        if (password.isBlank()) null
+        else if (password.length < 8) "Mínimo 8 caracteres"
+        else if (!isValidPassword(password)) "Debe tener mayúscula, minúscula y número"
+        else null
+    }
+    
+    val isPasswordMatch = remember(password, confirmPassword) {
+        confirmPassword.isBlank() || password == confirmPassword
+    }
+    val confirmPasswordError = remember(password, confirmPassword) {
+        if (confirmPassword.isBlank()) null
+        else if (password != confirmPassword) "Las contraseñas no coinciden"
+        else null
+    }
+    
+    // Validación general del formulario
+    val isFormValid = isFullNameValid && isEmailValid && isMobileNumberValid && 
+                     isDateOfBirthValid && isPasswordValid && isPasswordMatch &&
+                     fullName.isNotBlank() && email.isNotBlank() && password.isNotBlank() && 
+                     confirmPassword.isNotBlank()
     
     // Box principal con fondo #F6FFF8
     Box(
@@ -140,6 +244,15 @@ fun SignUpScreen(
                         ),
                         singleLine = true
                     )
+                    if (fullNameError != null) {
+                        Text(
+                            text = fullNameError,
+                            fontFamily = poppinsFamily,
+                            fontSize = 11.sp,
+                            color = Color(0xFFEF4444),
+                            modifier = Modifier.padding(top = 4.dp, start = 4.dp)
+                        )
+                    }
                 }
                 
                 Spacer(modifier = Modifier.height(14.dp))
@@ -189,6 +302,15 @@ fun SignUpScreen(
                         ),
                         singleLine = true
                     )
+                    if (emailError != null) {
+                        Text(
+                            text = emailError,
+                            fontFamily = poppinsFamily,
+                            fontSize = 11.sp,
+                            color = Color(0xFFEF4444),
+                            modifier = Modifier.padding(top = 4.dp, start = 4.dp)
+                        )
+                    }
                 }
                 
                 Spacer(modifier = Modifier.height(14.dp))
@@ -238,6 +360,15 @@ fun SignUpScreen(
                         ),
                         singleLine = true
                     )
+                    if (mobileNumberError != null) {
+                        Text(
+                            text = mobileNumberError,
+                            fontFamily = poppinsFamily,
+                            fontSize = 11.sp,
+                            color = Color(0xFFEF4444),
+                            modifier = Modifier.padding(top = 4.dp, start = 4.dp)
+                        )
+                    }
                 }
                 
                 Spacer(modifier = Modifier.height(14.dp))
@@ -255,7 +386,33 @@ fun SignUpScreen(
                     )
                     OutlinedTextField(
                         value = dateOfBirth,
-                        onValueChange = { dateOfBirth = it },
+                        onValueChange = { newValue ->
+                            // Formatear automáticamente DD/MM/YYYY
+                            val filtered = newValue.filter { it.isDigit() }
+                            dateOfBirth = when {
+                                filtered.isEmpty() -> ""
+                                filtered.length <= 2 -> filtered
+                                filtered.length <= 4 -> {
+                                    val day = filtered.substring(0, 2)
+                                    val month = filtered.substring(2)
+                                    "$day/$month"
+                                }
+                                filtered.length <= 8 -> {
+                                    val day = filtered.substring(0, 2)
+                                    val month = filtered.substring(2, 4)
+                                    val year = filtered.substring(4, minOf(8, filtered.length))
+                                    "$day/$month/$year"
+                                }
+                                else -> {
+                                    // Limitar a 8 dígitos (DDMMYYYY)
+                                    val limited = filtered.substring(0, 8)
+                                    val day = limited.substring(0, 2)
+                                    val month = limited.substring(2, 4)
+                                    val year = limited.substring(4, 8)
+                                    "$day/$month/$year"
+                                }
+                            }
+                        },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(56.dp),
@@ -287,6 +444,15 @@ fun SignUpScreen(
                         ),
                         singleLine = true
                     )
+                    if (dateOfBirthError != null) {
+                        Text(
+                            text = dateOfBirthError,
+                            fontFamily = poppinsFamily,
+                            fontSize = 11.sp,
+                            color = Color(0xFFEF4444),
+                            modifier = Modifier.padding(top = 4.dp, start = 4.dp)
+                        )
+                    }
                 }
                 
                 Spacer(modifier = Modifier.height(14.dp))
@@ -352,6 +518,15 @@ fun SignUpScreen(
                         ),
                         singleLine = true
                     )
+                    if (passwordError != null) {
+                        Text(
+                            text = passwordError,
+                            fontFamily = poppinsFamily,
+                            fontSize = 11.sp,
+                            color = Color(0xFFEF4444),
+                            modifier = Modifier.padding(top = 4.dp, start = 4.dp)
+                        )
+                    }
                 }
                 
                 Spacer(modifier = Modifier.height(14.dp))
@@ -417,6 +592,15 @@ fun SignUpScreen(
                         ),
                         singleLine = true
                     )
+                    if (confirmPasswordError != null) {
+                        Text(
+                            text = confirmPasswordError,
+                            fontFamily = poppinsFamily,
+                            fontSize = 11.sp,
+                            color = Color(0xFFEF4444),
+                            modifier = Modifier.padding(top = 4.dp, start = 4.dp)
+                        )
+                    }
                 }
                 
                 Spacer(modifier = Modifier.height(24.dp))
