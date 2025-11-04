@@ -27,6 +27,8 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.ui.zIndex
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.R
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.theme.poppinsFamily
+import androidx.hilt.navigation.compose.hiltViewModel
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.viewmodel.AuthViewModel
 
 /**
  * 3.0-B: Sign Up Screen - Pantalla de registro de usuario
@@ -36,6 +38,9 @@ fun SignUpScreen(
     onNavigateToLogin: () -> Unit = {},
     onNavigateToHome: () -> Unit = {}
 ) {
+    val authViewModel: AuthViewModel = hiltViewModel()
+    val signUpState by authViewModel.signUpState.collectAsState()
+    
     var fullName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var mobileNumber by remember { mutableStateOf("") }
@@ -44,6 +49,12 @@ fun SignUpScreen(
     var confirmPassword by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
     var confirmPasswordVisible by remember { mutableStateOf(false) }
+    
+    // Validaciones básicas
+    val isEmailValid = email.isNotBlank() && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    val isPasswordValid = password.isNotBlank() && password.length >= 6
+    val isPasswordMatch = password == confirmPassword
+    val isFormValid = isEmailValid && isPasswordValid && isPasswordMatch
     
     // Box principal con fondo #F6FFF8
     Box(
@@ -412,7 +423,12 @@ fun SignUpScreen(
                 
                 // Botón Sign Up (píldora centrada)
                 Button(
-                    onClick = onNavigateToHome,
+                    onClick = {
+                        // Usar email como username o extraer del email
+                        val username = email.split("@").firstOrNull() ?: email
+                        authViewModel.signUp(username, email, password)
+                    },
+                    enabled = isFormValid && signUpState !is AuthViewModel.SignUpState.Loading,
                     modifier = Modifier
                         .fillMaxWidth(0.72f)
                         .height(52.dp),
@@ -428,6 +444,13 @@ fun SignUpScreen(
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
                     )
+                }
+                
+                // Navegar al Home cuando el signUp sea exitoso
+                LaunchedEffect(signUpState) {
+                    if (signUpState is AuthViewModel.SignUpState.Success) {
+                        onNavigateToHome()
+                    }
                 }
                 
                 Spacer(modifier = Modifier.height(12.dp))

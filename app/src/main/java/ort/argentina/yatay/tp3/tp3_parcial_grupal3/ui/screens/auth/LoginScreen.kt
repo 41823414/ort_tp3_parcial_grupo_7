@@ -47,6 +47,14 @@ fun LoginScreen(
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
     
+    // Validaciones: username no vacío (puede ser email o username según API)
+    val isUsernameValid = remember(username) {
+        username.isNotBlank()
+    }
+    val isPasswordValid = remember(password) {
+        password.isNotBlank()
+    }
+    
     // Box principal con fondo #F6FFF8
     Box(
         modifier = Modifier
@@ -205,6 +213,7 @@ fun LoginScreen(
                     onClick = {
                         authViewModel.login(username, password)
                     },
+                    enabled = isUsernameValid && isPasswordValid && loginState !is AuthViewModel.LoginState.Loading,
                     modifier = Modifier
                         .fillMaxWidth(0.72f)
                         .height(52.dp),

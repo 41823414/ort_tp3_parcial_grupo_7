@@ -8,8 +8,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.BuildConfig
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.remote.api.ApiService
-import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.remote.mock.MockAuthInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -18,16 +18,15 @@ import javax.inject.Singleton
 /**
  * Módulo de Hilt para proveer Retrofit y componentes de networking
  * Integración completa de Retrofit + OkHttp + Gson con Hilt
+ * 
+ * La BASE_URL se configura desde BuildConfig, que se genera desde:
+ * - local.properties (BASE_URL=...)
+ * - Variable de entorno BASE_URL
+ * - Valor por defecto si no está configurado
  */
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-
-    /**
-     * Base URL de la API
-     * Usando JSONPlaceholder como API de ejemplo
-     */
-    private const val BASE_URL = "https://jsonplaceholder.typicode.com/"
 
     /**
      * Provee Gson configurado
@@ -63,8 +62,6 @@ object NetworkModule {
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            // Interceptor de mocks para auth/login
-            .addInterceptor(MockAuthInterceptor())
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
@@ -82,7 +79,7 @@ object NetworkModule {
         gson: Gson
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
