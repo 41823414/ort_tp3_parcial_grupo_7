@@ -47,34 +47,34 @@ fun TransactionRow(
     ) {
         // Icon
         Surface(
-            modifier = Modifier.size(40.dp),
+            modifier = Modifier.size(48.dp),
             color = iconColor,
-            shape = RoundedCornerShape(8.dp)
+            shape = RoundedCornerShape(14.dp)
         ) {
             Icon(
                 painter = icon,
                 contentDescription = title,
                 tint = Color.White,
                 modifier = Modifier
-                    .padding(8.dp)
+                    .padding(10.dp)
                     .size(24.dp)
             )
         }
 
         // Title + DateTime
         Column(
-            modifier = Modifier.width(90.dp)
+            modifier = Modifier.width(100.dp)
         ) {
             Text(
                 text = title,
-                fontSize = 14.sp,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
                 fontFamily = poppinsFamily,
                 color = colorResource(R.color.fence_green)
             )
             Text(
                 text = dateTime,
-                fontSize = 11.sp,
+                fontSize = 12.sp,
                 fontFamily = poppinsFamily,
                 color = colorResource(R.color.light_blue)
             )
@@ -91,10 +91,10 @@ fun TransactionRow(
         // Type of Charge
         Text(
             text = typeOfCharge,
-            fontSize = 12.sp,
+            fontSize = 14.sp,
             fontFamily = poppinsFamily,
             color = colorResource(R.color.fence_green),
-            modifier = Modifier.width(60.dp)
+            modifier = Modifier.width(70.dp)
         )
 
         // Vertical Divider
@@ -108,7 +108,7 @@ fun TransactionRow(
         // Amount with dynamic color
         Text(
             text = amount,
-            fontSize = 14.sp,
+            fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
             fontFamily = poppinsFamily,
             color = amountColor,

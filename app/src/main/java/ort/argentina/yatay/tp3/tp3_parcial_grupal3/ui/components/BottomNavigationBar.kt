@@ -1,51 +1,111 @@
 package ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components
 
-import androidx.compose.material3.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Layers
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.QueryStats
+import androidx.compose.material.icons.outlined.SwapHoriz
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import ort.argentina.yatay.tp3.tp3_parcial_grupal3.navigation.BottomNavItems
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.R
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.navigation.Screen
 
-/**
- * COMPONENTE - Barra de navegación inferior reutilizable
- */
 @Composable
-fun BottomNavigationBar(
-    navController: NavController,
-    modifier: Modifier = Modifier
-) {
-    NavigationBar(modifier = modifier) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
+fun BottomNavigationBar(navController: NavHostController) {
+    val route = navController.currentBackStackEntryAsState().value?.destination?.route
 
-        BottomNavItems.items.forEach { item ->
-            NavigationBarItem(
-                icon = {
-                    Icon(
-                        imageVector = item.icon,
-                        contentDescription = item.title
-                    )
-                },
-                label = { Text(text = item.title) },
-                selected = currentRoute == item.screen.route,
-                onClick = {
-                    navController.navigate(item.screen.route) {
-                        // Pop up to the start destination to avoid building a large stack
-                        navController.graph.startDestinationRoute?.let { route ->
-                            popUpTo(route) {
-                                saveState = true
-                            }
-                        }
-                        // Avoid multiple copies of the same destination
-                        launchSingleTop = true
-                        // Restore state when reselecting a previously selected item
-                        restoreState = true
-                    }
-                }
-            )
+    Surface(
+        color = colorResource(R.color.card_mint),
+        shadowElevation = 10.dp,
+        shape = RoundedCornerShape(28.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 10.dp)
+            .height(84.dp)                    // presencia 💪
+            .navigationBarsPadding()
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 20.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Item(
+                icon = Icons.Outlined.Home,
+                selected = route == Screen.Home.route
+            ) { navController.navigate(Screen.Home.route) }
+
+            Item(
+                icon = Icons.Outlined.QueryStats,
+                selected = route == Screen.AccountBalance.route
+            ) { navController.navigate(Screen.AccountBalance.route) }
+
+            // Botón central circular con flechas de intercambio
+            Box(
+                modifier = Modifier
+                    .size(56.dp)
+                    .clip(CircleShape)
+                    .background(colorResource(R.color.fence_green))
+                    .clickable { navController.navigate(Screen.Transaction.route) },
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.SwapHoriz,
+                    contentDescription = "Transactions",
+                    tint = Color.White
+                )
+            }
+
+            Item(
+                icon = Icons.Outlined.Layers,
+                selected = route == Screen.Categories.route
+            ) { navController.navigate(Screen.Categories.route) }
+
+            Item(
+                icon = Icons.Outlined.Person,
+                selected = route == Screen.Profile.route
+            ) { navController.navigate(Screen.Profile.route) }
         }
     }
 }
 
+@Composable
+private fun Item(
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    selected: Boolean,
+    onClick: () -> Unit
+) {
+    val tint =
+        if (selected) colorResource(R.color.title_on_top)
+        else colorResource(R.color.title_muted).copy(alpha = 0.75f)
+
+    Box(
+        modifier = Modifier
+            .size(44.dp)                     // área táctil holgada
+            .clickable(onClick = onClick),
+        contentAlignment = Alignment.Center
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = tint,
+            modifier = Modifier.size(26.dp)  // ícono grande
+        )
+    }
+}

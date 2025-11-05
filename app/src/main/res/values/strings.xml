@@ -67,6 +67,7 @@
     <!-- Account Balance Screen -->
     <string name="balance_available">Balance available</string>
     <string name="balance_total">Balance total</string>
+    <string name="balance_title">Balance account</string>
 
     <!-- Transaction Screen -->
     <string name="transaction_title">Transactions</string>

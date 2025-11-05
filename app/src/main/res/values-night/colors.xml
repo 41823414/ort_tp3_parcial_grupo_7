@@ -4,8 +4,15 @@
     <!-- Light colors become dark for better readability -->
     <color name="honeydew">@color/fence_green</color>
     <color name="light_green">@color/cyprus</color>
+    <color name="light_blue">#9EC9FF</color>
+    <color name="vivid_blue">#7FB6FF</color>
+    <color name="ocean_blue">#69C2FF</color>
+    <color name="sky_blue">#A7E9FF</color>
 
     <!-- Background becomes dark -->
     <color name="white">@color/void_black</color>
+    <color name="fence_green">#F7EEDC</color>   <!-- blanco cálido para texto -->
+    <color name="light_green">#00B686</color>   <!-- acento se mantiene -->
+    <color name="panel_soft">#0E2F31</color>
 </resources>
 
