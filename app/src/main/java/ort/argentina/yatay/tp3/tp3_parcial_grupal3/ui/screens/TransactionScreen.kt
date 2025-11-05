@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -66,14 +67,14 @@ fun TransactionScreen(
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Back",
+                    contentDescription = stringResource(R.string.common_back),
                     tint = Color.White,
                     modifier = Modifier
                         .size(28.dp)
                         .padding(end = 8.dp)
                 )
                 Text(
-                    text = "Transaction",
+                    text = stringResource(R.string.transaction_title),
                     color = colorResource(R.color.title_on_top),
                     fontSize = 22.sp,
                     fontWeight = FontWeight.SemiBold,
@@ -83,7 +84,7 @@ fun TransactionScreen(
                 )
                 Icon(
                     painter = painterResource(R.drawable.bell),
-                    contentDescription = "Notifications",
+                    contentDescription = stringResource(R.string.common_notifications),
                     tint = Color.White,
                     modifier = Modifier.size(22.dp)
                 )
@@ -118,7 +119,7 @@ fun TransactionScreen(
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Text(
-                                text = "Total Balance",
+                                text = stringResource(R.string.transaction_screen_balance),
                                 color = colorResource(R.color.title_muted),
                                 fontSize = 15.sp,
                                 fontFamily = poppinsFamily
@@ -149,7 +150,7 @@ fun TransactionScreen(
                                 )
                                 Spacer(Modifier.width(6.dp))
                                 Text(
-                                    text = "Total Balance",
+                                    text = stringResource(R.string.transaction_screen_balance),
                                     color = Color.White,
                                     fontSize = 12.sp,
                                     fontFamily = poppinsFamily
@@ -176,7 +177,7 @@ fun TransactionScreen(
                                 )
                                 Spacer(Modifier.width(6.dp))
                                 Text(
-                                    text = "Total Expense",
+                                    text = stringResource(R.string.transaction_screen_expense),
                                     color = Color.White,
                                     fontSize = 12.sp,
                                     fontFamily = poppinsFamily
@@ -219,7 +220,7 @@ fun TransactionScreen(
                         )
                         Spacer(Modifier.width(6.dp))
                         Text(
-                            text = "30% Of Your Expenses, Looks Good.",
+                            text = stringResource(R.string.expenses_status),
                             color = Color.White,
                             fontSize = 12.sp,
                             fontFamily = poppinsFamily

@@ -72,9 +72,13 @@
     <string name="balance_total">Balance total</string>
 
     <!-- Transaction Screen -->
-    <string name="transaction_title">Transactions</string>
+    <string name="transaction_title">Transaction</string>
     <string name="transaction_new">New transaction</string>
     <string name="transaction_history">History</string>
+    <string name="transaction_screen_balance">Total Balance</string>
+    <string name="transaction_screen_expense">Total Expense</string>
+    <string name="common_back">Back</string>
+    <string name="common_notifications">Notifications</string>
 
     <!-- Categories Screen -->
     <string name="categories_title">Categories</string>
@@ -99,6 +103,15 @@
     <string name="common_error">Error</string>
     <string name="common_success">Success</string>
     <string name="common_loading">Loading…</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_description">Application Settings Options</string>
+    <string name="settings_options">Options</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_privacy">Privacy</string>
+    <string name="settings_theme">App Theme</string>
+    <string name="settings_language">Language</string>
 
     <string name="app_name_finwise">FinWise</string>
     <string name="welcome_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</string>
