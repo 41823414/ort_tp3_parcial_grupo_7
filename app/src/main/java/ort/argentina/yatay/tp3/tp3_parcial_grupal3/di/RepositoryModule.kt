@@ -6,26 +6,58 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.repository.ExampleRepository
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.repository.ExampleRepositoryInterface
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.repository.TaskRepositoryImpl
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.repository.UserRepositoryImpl
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.repository.AuthRepositoryImpl
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.domain.repository.TaskRepository
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.domain.repository.UserRepository
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.domain.repository.AuthRepository
 import javax.inject.Singleton
 
 /**
- * Módulo que usa @Binds en lugar de @Provides
- * @Binds es más eficiente cuando solo necesitas vincular una interfaz a su implementación
- * Este es un patrón común en Dagger/Hilt para abstraer repositorios
+ * Módulo que usa @Binds para vincular interfaces de dominio con implementaciones de datos
+ * Este es el patrón de Clean Architecture: domain define contratos, data los implementa
  */
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
 
     /**
-     * Vincula la implementación ExampleRepository a la interfaz ExampleRepositoryInterface
-     * Dagger/Hilt automáticamente sabrá que cuando se requiera ExampleRepositoryInterface,
-     * debe proveer una instancia de ExampleRepository
+     * Vincula ExampleRepository a ExampleRepositoryInterface (mantiene compatibilidad)
      */
     @Binds
     @Singleton
     abstract fun bindExampleRepository(
         implementation: ExampleRepository
     ): ExampleRepositoryInterface
+
+    /**
+     * Vincula UserRepositoryImpl a UserRepository (interfaz de dominio)
+     * Clean Architecture: domain.repository.UserRepository -> data.repository.UserRepositoryImpl
+     */
+    @Binds
+    @Singleton
+    abstract fun bindUserRepository(
+        implementation: UserRepositoryImpl
+    ): UserRepository
+
+    /**
+     * Vincula TaskRepositoryImpl a TaskRepository (interfaz de dominio)
+     * Clean Architecture: domain.repository.TaskRepository -> data.repository.TaskRepositoryImpl
+     */
+    @Binds
+    @Singleton
+    abstract fun bindTaskRepository(
+        implementation: TaskRepositoryImpl
+    ): TaskRepository
+
+    /**
+     * Vincula AuthRepositoryImpl a AuthRepository (dominio)
+     */
+    @Binds
+    @Singleton
+    abstract fun bindAuthRepository(
+        implementation: AuthRepositoryImpl
+    ): AuthRepository
 }
 

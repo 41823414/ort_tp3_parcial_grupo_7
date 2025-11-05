@@ -25,10 +25,30 @@ fun MainScreen() {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
+    // Pantallas donde NO se muestra el menú inferior
+    val screensWithoutBottomBar = listOf(
+        Screen.Launch.route,
+        Screen.OnBoarding.route,
+        Screen.Login.route,
+        Screen.SignUp.route,
+        Screen.ForgotPassword.route,
+        Screen.SecurityPin.route.split("?")[0], // Solo la ruta base sin parámetros
+        Screen.NewPassword.route.split("?")[0], // Solo la ruta base sin parámetros
+        Screen.PasswordChanged.route
+    )
+
+    //showBottomBar Agus
+    // Solo mostrar bottomBar si no estamos en una pantalla de auth/launch
+    val showBottomBar = currentRoute !in screensWithoutBottomBar
+
+    // ShowBottomBar original*/
+    /*
     val showBottomBar = currentRoute !in listOf(
         Screen.Launch.route,
         Screen.OnBoarding.route
     )
+    */
+     */
 
     Box(
         Modifier
@@ -40,10 +60,10 @@ fun MainScreen() {
             // Usa la firma segura; algunas versiones no aceptan WindowInsets(0)
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
             bottomBar = {
-                if (showBottomBar) {
-                    BottomNavigationBar(navController = navController)
+                    if (showBottomBar) {
+                        BottomNavigationBar(navController = navController)
+                    }
                 }
-            }
         ) { innerPadding ->
             AppNavGraph(
                 navController = navController,

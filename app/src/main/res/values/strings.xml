@@ -96,5 +96,31 @@
     <string name="common_error">Error</string>
     <string name="common_success">Success</string>
     <string name="common_loading">Loading…</string>
+
+
+
+
+    <string name="transaction_title">Transacciones</string>
+    <string name="app_name_finwise">FinWise</string>
+    <string name="welcome_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</string>
+    <string name="username_or_email">Username Or Email</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="use_fingerprint">Use Fingerprint To Access</string>
+    <string name="dont_have_account">Don\'t have an account? Sign Up</string>
+    <string name="already_have_account">Already have an account? Log In</string>
+    <string name="terms_privacy">By continuing, you agree to Terms of Use and Privacy Policy.</string>
+    <string name="reset_password">Reset Password?</string>
+    <string name="enter_email_address">Enter Email Address</string>
+    <string name="next_step">Next Step</string>
+    <string name="security_pin">Security Pin</string>
+    <string name="enter_security_pin">Enter Security Pin</string>
+    <string name="accept">Accept</string>
+    <string name="send_again">Send Again</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="change_password">Change Password</string>
+    <string name="password_changed_successfully">Password Has Been Changed Successfully</string>
 </resources>
 

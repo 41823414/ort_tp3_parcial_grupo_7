@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Color Palette -->
+    <!-- Greens -->
+
+    <color name="cream">#FAF9F6</color>
+    <color name="dark_green">#006B52</color>
+    <color name="app_name_green">#006B52</color>
+    <color name="green_emerald_start">#00d49f</color>
+    <color name="green_emerald_end">#00bfa6</color>
+    <color name="white_greenish">#F6FFF8</color>
+
     <!-- Greens - Light Theme -->
     <color name="honeydew">#FFFFF3F3</color>
     <color name="light_green">#FFDFF7E2</color>
@@ -16,6 +25,7 @@
     <color name="vivid_blue">#FF3299FF</color>
     <color name="ocean_blue">#FF0068FF</color>
     <color name="sky_blue">#86E0FF</color>
+    <color name="vivid_blue_accent">#0080FF</color>
 
 
     <color name="title_on_top">#123C34</color>

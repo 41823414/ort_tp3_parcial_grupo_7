@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    
+    <!-- Gráfico de barras con flecha ascendente -->
+    <!-- Barra 1 (izquierda, más baja) -->
+    <path
+        android:fillColor="#006B52"
+        android:pathData="M20,80 L20,100 L35,100 L35,80 Z"/>
+    
+    <!-- Barra 2 (centro, media) -->
+    <path
+        android:fillColor="#006B52"
+        android:pathData="M45,60 L45,100 L60,100 L60,60 Z"/>
+    
+    <!-- Barra 3 (derecha, alta) -->
+    <path
+        android:fillColor="#006B52"
+        android:pathData="M70,40 L70,100 L85,100 L85,40 Z"/>
+    
+    <!-- Flecha ascendente sobre la barra más alta -->
+    <path
+        android:fillColor="#006B52"
+        android:pathData="M77,30 L77,20 L82,20 L77.5,15 L73,20 L78,20 L78,30 Z"/>
+</vector>
+

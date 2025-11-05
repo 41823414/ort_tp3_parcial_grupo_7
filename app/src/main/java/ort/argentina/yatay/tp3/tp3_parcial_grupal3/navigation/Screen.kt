@@ -10,6 +10,13 @@ sealed class Screen(val route: String) {
     object Login : Screen("login")
     object SignUp : Screen("signup")
     object ForgotPassword : Screen("forgot_password")
+    object SecurityPin : Screen("security_pin?email={email}") {
+        fun createRoute(email: String) = "security_pin?email=$email"
+    }
+    object NewPassword : Screen("new_password?email={email}") {
+        fun createRoute(email: String) = "new_password?email=$email"
+    }
+    object PasswordChanged : Screen("password_changed")
 
     // Main Flow
     object Home : Screen("home")
@@ -28,6 +35,9 @@ sealed class Screen(val route: String) {
             Login.route -> Login
             SignUp.route -> SignUp
             ForgotPassword.route -> ForgotPassword
+            SecurityPin.route -> SecurityPin
+            NewPassword.route -> NewPassword
+            PasswordChanged.route -> PasswordChanged
             Home.route -> Home
             AccountBalance.route -> AccountBalance
             Transaction.route -> Transaction
