@@ -77,5 +77,17 @@ class TaskRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override suspend fun markTaskAsCompleted(taskId: Int) {
+        taskDao.markTaskAsCompleted(taskId)
+    }
+
+    override suspend fun deleteCompletedTasks() {
+        val completedTasks = taskDao.getCompletedTasks().collect { taskEntities ->
+            taskEntities.forEach { taskEntity ->
+                taskDao.deleteTask(taskEntity)
+            }
+        }
+    }
 }
 
