@@ -97,10 +97,6 @@
     <string name="common_success">Success</string>
     <string name="common_loading">Loading…</string>
 
-
-
-
-    <string name="transaction_title">Transacciones</string>
     <string name="app_name_finwise">FinWise</string>
     <string name="welcome_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</string>
     <string name="username_or_email">Username Or Email</string>

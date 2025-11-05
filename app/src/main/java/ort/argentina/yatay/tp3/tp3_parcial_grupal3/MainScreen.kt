@@ -48,7 +48,6 @@ fun MainScreen() {
         Screen.OnBoarding.route
     )
     */
-     */
 
     Box(
         Modifier
