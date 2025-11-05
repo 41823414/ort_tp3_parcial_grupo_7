@@ -41,15 +41,15 @@ fun TransactionRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 12.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
+            .padding(vertical = 10.dp),
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         // Icon
         Surface(
-            modifier = Modifier.size(48.dp),
+            modifier = Modifier.size(32.dp),
             color = iconColor,
-            shape = RoundedCornerShape(14.dp)
+            shape = RoundedCornerShape(12.dp)
         ) {
             Icon(
                 painter = icon,
@@ -67,14 +67,14 @@ fun TransactionRow(
         ) {
             Text(
                 text = title,
-                fontSize = 16.sp,
+                fontSize = 14.sp,
                 fontWeight = FontWeight.SemiBold,
                 fontFamily = poppinsFamily,
                 color = colorResource(R.color.fence_green)
             )
             Text(
                 text = dateTime,
-                fontSize = 12.sp,
+                fontSize = 10.sp,
                 fontFamily = poppinsFamily,
                 color = colorResource(R.color.light_blue)
             )
@@ -84,14 +84,14 @@ fun TransactionRow(
         Box(
             modifier = Modifier
                 .width(1.dp)
-                .height(40.dp)
+                .height(32.dp)
                 .background(colorResource(R.color.light_green))
         )
 
         // Type of Charge
         Text(
             text = typeOfCharge,
-            fontSize = 14.sp,
+            fontSize = 12.sp,
             fontFamily = poppinsFamily,
             color = colorResource(R.color.fence_green),
             modifier = Modifier.width(70.dp)

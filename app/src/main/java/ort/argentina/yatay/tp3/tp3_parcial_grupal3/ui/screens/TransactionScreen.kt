@@ -23,6 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.R
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components.ProgressBarWithLabel
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components.TransactionsHistoryList
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.theme.poppinsFamily
 
@@ -187,26 +188,15 @@ fun TransactionScreen(
 
             Spacer(Modifier.height(12.dp))
 
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text("30%", color = Color.White, fontSize = 12.sp, fontFamily = poppinsFamily)
-                Text("$20,000.00", color = Color.White, fontSize = 12.sp, fontFamily = poppinsFamily)
-            }
-            Spacer(Modifier.height(8.dp))
-
-            LinearProgressIndicator(
-                progress = 0.30f,
-                color = Color(0xFF141414),
-                trackColor = Color.White.copy(alpha = 0.45f),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .height(14.dp)
-                    .clip(RoundedCornerShape(12.dp))
+            ProgressBarWithLabel(
+                progress = 0.3f,
+                maxAmount = "$20,000.00",
+                percentageText = "30%",
+                barBackgroundColor = colorResource(R.color.void_black),
+                barProgressColor = colorResource(R.color.honeydew),
+                cornerRadius = 50,
+                percentageTextColor = Color.White,
+                amountTextColor = colorResource(R.color.void_black)
             )
 
             Spacer(Modifier.height(12.dp))
