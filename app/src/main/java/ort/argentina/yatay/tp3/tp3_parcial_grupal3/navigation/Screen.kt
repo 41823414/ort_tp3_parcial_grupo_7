@@ -19,6 +19,12 @@ sealed class Screen(val route: String) {
     object Profile : Screen("profile")
     object ProfileEdit : Screen("profile_edit")
     object Security : Screen("security")
+    object Fingerprint : Screen("fingerprint")
+    object FingerprintView : Screen("fingerprint_view")
+    object FingerprintAdd : Screen("fingerprint_add")
+    object ChangePin : Screen("change_pin")
+    object TermsAndConditions : Screen("terms_and_conditions")
+    object LoadingSecurity : Screen("loading_security")
 
     // Notifications (Dialog - no tiene ruta de navegación)
 
@@ -36,6 +42,12 @@ sealed class Screen(val route: String) {
             Profile.route -> Profile
             ProfileEdit.route -> ProfileEdit
             Security.route -> Security
+            Fingerprint.route -> Fingerprint
+            FingerprintView.route -> FingerprintView
+            FingerprintAdd.route -> FingerprintAdd
+            ChangePin.route -> ChangePin
+            TermsAndConditions.route -> TermsAndConditions
+            LoadingSecurity.route -> LoadingSecurity
             else -> Launch
         }
     }

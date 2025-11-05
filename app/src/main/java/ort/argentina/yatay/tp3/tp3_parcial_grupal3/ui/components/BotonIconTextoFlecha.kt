@@ -1,63 +1,66 @@
 package ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.R
 
 @Composable
-fun BotonIconoTitulo(
-    icon: Painter,
-    title: String,
+fun BotonIconTextoFlecha(
+    texto: String,
+    iconPainter: Painter,
     onClick: () -> Unit,
     fontFamily: FontFamily,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    bottomPadding: Int = 0
 ) {
-    Box(
+    Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 0.dp)
-            .clip(RoundedCornerShape(12.dp))
             .clickable(onClick = onClick)
-            .background(Color(0xFFF1FFF3))
+            .padding(vertical = 16.dp)
+            .padding(bottom = bottomPadding.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            // El ícono es un Image de tu drawable
+            // Ícono sin fondo
             Image(
-                painter = icon,
+                painter = iconPainter,
                 contentDescription = null,
-                modifier = Modifier
-                    .width(57.dp)
-                    .height(53.dp)
+                modifier = Modifier.size(24.dp),
+                contentScale = ContentScale.Fit
             )
 
-            Spacer(modifier = Modifier.width(16.dp))
-
             Text(
-                text = title,
+                text = texto,
                 fontSize = 16.sp,
                 fontFamily = fontFamily,
                 fontWeight = FontWeight.Medium,
-                color = Color(0xFF093030)
+                color = Color(0xFF0E3E3E)
             )
         }
+
+        // Flecha derecha
+        Image(
+            painter = painterResource(id = R.drawable.flecha_derecha),
+            contentDescription = null,
+            modifier = Modifier.size(20.dp)
+        )
     }
 }
