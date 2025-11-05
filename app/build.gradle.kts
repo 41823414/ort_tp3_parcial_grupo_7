@@ -23,7 +23,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // BuildConfig fields para API base URL
-        buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
+        buildConfigField("String", "BASE_URL", "\"https://d9811bf4-5e67-4a8c-bdcf-603cbbfc0275.mock.pstmn.io/\"")
     }
 
     buildTypes {
