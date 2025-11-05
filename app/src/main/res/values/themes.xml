@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main App Theme -->
+    <style name="Theme.Tp3_parcial_grupal3" parent="android:Theme.Material">
+        <item name="android:colorPrimary">@color/caribbean_green</item>
+        <item name="android:colorPrimaryDark">@color/light_green</item>
+        <item name="android:colorAccent">@color/light_blue</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:textColorPrimary">@color/fence_green</item>
+    </style>
+
+    <!-- Theme without ActionBar -->
+    <style name="Theme.Tp3_parcial_grupal3.NoActionBar" parent="Theme.Tp3_parcial_grupal3">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
+</resources>
+

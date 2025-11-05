@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">TP3 Parcial Grupal</string>
+
+    <!-- Launch Screen -->
+    <string name="launch_loading">Loading…</string>
+
+    <!-- OnBoarding Screen -->
+    <string name="onboarding_title">Welcome</string>
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_get_started">Start</string>
+
+    <!-- Login Screen -->
+    <string name="login_title">Log In</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">Sign in</string>
+    <string name="login_forgot_password">Forgot your password\?</string>
+    <string name="login_signup">You don\'t have an account\? Sign up</string>
+
+    <!-- Home Screen - Balance Section -->
+    <string name="balance_title">Total Balance</string>
+    <string name="expense_title">Total Expense</string>
+    <string name="expenses_status">30% Of Your Expenses, Looks Good.</string>
+
+    <!-- Home Screen - Header -->
+    <string name="home_greeting">Hi, Welcome Back</string>
+    <string name="home_good_morning">Good Morning</string>
+
+    <!-- Home Screen - Savings Card -->
+    <string name="savings_title">Savings\nOn Goals</string>
+    <string name="revenue_last_week">Revenue Last Week</string>
+    <string name="food_last_week">Food Last Week</string>
+
+    <!-- Home Screen - Period Selector -->
+    <string name="period_daily">Daily</string>
+    <string name="period_weekly">Weekly</string>
+    <string name="period_monthly">Monthly</string>
+
+    <!-- Home Screen - Transactions -->
+    <string name="transaction_salary">Salary</string>
+    <string name="transaction_groceries">Groceries</string>
+    <string name="transaction_rent">Rent</string>
+
+    <!-- Sign Up Screen -->
+    <string name="signup_title">Sign Up</string>
+    <string name="signup_name">Full name</string>
+    <string name="signup_email">Email</string>
+    <string name="signup_password">Password</string>
+    <string name="signup_confirm_password">Confirm password</string>
+    <string name="signup_button">Sign up</string>
+    <string name="signup_login">Do you have an account? Sign in</string>
+
+    <!-- Forgot Password Screen -->
+    <string name="forgot_password_title">Recover password</string>
+    <string name="forgot_password_description">Write your mail to recover password</string>
+    <string name="forgot_password_email">Email</string>
+    <string name="forgot_password_button">Send</string>
+    <string name="forgot_password_back">Back</string>
+
+    <!-- Home Screen -->
+    <string name="home_title">Start</string>
+    <string name="home_welcome">Welcome</string>
+
+    <!-- Account Balance Screen -->
+    <string name="balance_available">Balance available</string>
+    <string name="balance_total">Balance total</string>
+
+    <!-- Transaction Screen -->
+    <string name="transaction_title">Transactions</string>
+    <string name="transaction_new">New transaction</string>
+    <string name="transaction_history">History</string>
+
+    <!-- Categories Screen -->
+    <string name="categories_title">Categories</string>
+    <string name="categories_add">Add category</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_title">Profile</string>
+    <string name="profile_edit">Edit profile</string>
+    <string name="profile_logout">Close session</string>
+
+    <!-- Notifications -->
+    <string name="notifications_title">Notifications</string>
+    <string name="notifications_empty">You don\'t have any notifications</string>
+    <string name="notifications_mark_read">Mark as read</string>
+
+    <!-- Common -->
+    <string name="common_cancel">Cancel</string>
+    <string name="common_save">Save</string>
+    <string name="common_delete">Remove</string>
+    <string name="common_edit">Edit</string>
+    <string name="common_confirm">Confirm</string>
+    <string name="common_error">Error</string>
+    <string name="common_success">Success</string>
+    <string name="common_loading">Loading…</string>
+</resources>
+
