@@ -184,7 +184,7 @@ fun TransactionScreen(
                             }
                             Text(
                                 text = "-$1,187.40",
-                                color = Color(0xFF9EE3FF),
+                                color = colorResource(R.color.ocean_blue),
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
                                 fontFamily = poppinsFamily

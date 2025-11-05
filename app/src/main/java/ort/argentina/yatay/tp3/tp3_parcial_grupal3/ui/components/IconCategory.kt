@@ -11,9 +11,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.R
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.theme.poppinsFamily
 
 /**
@@ -31,7 +33,7 @@ fun IconCategory(
     modifier: Modifier = Modifier
 ) {
     val isDarkTheme = isSystemInDarkTheme()
-    val textColor = if (isDarkTheme) Color.White else Color.Black
+    val textColor = if (isDarkTheme) colorResource(R.color.honeydew) else colorResource(R.color.void_black)
 
     Column(
         modifier = modifier,

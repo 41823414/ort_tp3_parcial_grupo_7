@@ -36,6 +36,7 @@
     <!-- Base Colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="dark_bg">@color/cyprus</color>
 
     <!-- Legacy Colors (kept for compatibility) -->
     <color name="purple_200">#FFBB86FC</color>

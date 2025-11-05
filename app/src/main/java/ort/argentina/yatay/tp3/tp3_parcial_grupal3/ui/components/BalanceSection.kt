@@ -2,6 +2,7 @@ package ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -25,6 +26,10 @@ import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.theme.poppinsFamily
  */
 @Composable
 fun BalanceSection() {
+    val isDarkTheme = isSystemInDarkTheme()
+    val labelTextColor = if (isDarkTheme) colorResource(R.color.honeydew) else colorResource(R.color.void_black)
+    val iconColor = if (isDarkTheme) colorResource(R.color.honeydew) else colorResource(R.color.void_black)
+
     Column(
         modifier = Modifier
             .fillMaxWidth(),
@@ -54,13 +59,13 @@ fun BalanceSection() {
                         Box(
                             modifier = Modifier
                                 .size(24.dp)
-                                .border(1.dp, colorResource(R.color.void_black), RoundedCornerShape(6.dp)),
+                                .border(1.dp, iconColor, RoundedCornerShape(6.dp)),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
                                 painter = painterResource(R.drawable.arrow_up_left),
                                 contentDescription = "Balance Up",
-                                tint = colorResource(R.color.void_black),
+                                tint = iconColor,
                                 modifier = Modifier
                                     .size(16.dp)
                                     .rotate(90f)
@@ -70,7 +75,7 @@ fun BalanceSection() {
                             text = stringResource(R.string.balance_title),
                             fontSize = 12.sp,
                             fontFamily = poppinsFamily,
-                            color = colorResource(R.color.void_black)
+                            color = labelTextColor
                         )
                     }
                     Text(
@@ -102,13 +107,13 @@ fun BalanceSection() {
                         Box(
                             modifier = Modifier
                                 .size(24.dp)
-                                .border(1.dp, colorResource(R.color.void_black), RoundedCornerShape(6.dp)),
+                                .border(1.dp, iconColor, RoundedCornerShape(6.dp)),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
                                 painter = painterResource(R.drawable.arrow_down_right),
                                 contentDescription = "Expense Down",
-                                tint = colorResource(R.color.void_black),
+                                tint = iconColor,
                                 modifier = Modifier.size(16.dp)
                             )
                         }
@@ -116,7 +121,7 @@ fun BalanceSection() {
                             text = stringResource(R.string.expense_title),
                             fontSize = 12.sp,
                             fontFamily = poppinsFamily,
-                            color = colorResource(R.color.void_black)
+                            color = labelTextColor
                         )
                     }
                     Text(

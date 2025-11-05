@@ -82,7 +82,7 @@ fun CategoriesScreen(
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .clip(RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp))
-                .background(Color.White)
+                .background(if (isDarkTheme) colorResource(R.color.cyprus) else Color.White)
         ) {
             Column(
                 modifier = Modifier

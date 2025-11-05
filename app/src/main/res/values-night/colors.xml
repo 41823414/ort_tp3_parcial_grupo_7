@@ -13,5 +13,5 @@
     <color name="fence_green">#F7EEDC</color>   <!-- blanco cálido para texto -->
     <color name="light_green">#00B686</color>   <!-- acento se mantiene -->
     <color name="panel_soft">#0E2F31</color>
+    <color name="dark_bg">#0E3E3E</color>
 </resources>
-

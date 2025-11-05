@@ -1,6 +1,7 @@
 package ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -30,6 +31,11 @@ fun CategoryHeader(
     onBackClick: () -> Unit = {},
     onNotificationClick: () -> Unit = {}
 ) {
+    val isDarkTheme = isSystemInDarkTheme()
+    val textColor = if (isDarkTheme) Color.White else colorResource(R.color.void_black)
+    val iconColor = if (isDarkTheme) Color.White else colorResource(R.color.void_black)
+    val notificationBgColor = if (isDarkTheme) colorResource(R.color.fence_green) else Color.White
+
     Row(
         modifier = Modifier
             .fillMaxWidth(0.85f)
@@ -46,7 +52,7 @@ fun CategoryHeader(
             Icon(
                 painter = painterResource(R.drawable.flecha_atras),
                 contentDescription = "Back",
-                tint = colorResource(R.color.void_black),
+                tint = iconColor,
                 modifier = Modifier.size(20.dp)
             )
         }
@@ -57,7 +63,7 @@ fun CategoryHeader(
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             fontFamily = poppinsFamily,
-            color = colorResource(R.color.void_black)
+            color = textColor
         )
 
         // Campana de notificaciones
@@ -65,7 +71,7 @@ fun CategoryHeader(
             modifier = Modifier
                 .size(32.dp)
                 .clip(RoundedCornerShape(50)),
-            color = Color.White,
+            color = notificationBgColor,
             shadowElevation = 2.dp
         ) {
             IconButton(onClick = onNotificationClick) {
