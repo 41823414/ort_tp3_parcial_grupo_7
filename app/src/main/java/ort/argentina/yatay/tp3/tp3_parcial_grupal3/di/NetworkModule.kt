@@ -8,7 +8,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import ort.argentina.yatay.tp3.tp3_parcial_grupal3.BuildConfig
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.data.remote.api.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -19,14 +18,13 @@ import javax.inject.Singleton
  * Módulo de Hilt para proveer Retrofit y componentes de networking
  * Integración completa de Retrofit + OkHttp + Gson con Hilt
  * 
- * La BASE_URL se configura desde BuildConfig, que se genera desde:
- * - local.properties (BASE_URL=...)
- * - Variable de entorno BASE_URL
- * - Valor por defecto si no está configurado
+ * La BASE_URL se configura como constante
  */
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
+    private const val API_BASE_URL = "https://jsonplaceholder.typicode.com/"
 
     /**
      * Provee Gson configurado
@@ -34,9 +32,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideGson(): Gson {
-        return GsonBuilder()
-            .setLenient()
-            .create()
+        return GsonBuilder().create()
     }
 
     /**
@@ -79,7 +75,7 @@ object NetworkModule {
         gson: Gson
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(API_BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
