@@ -1,19 +1,24 @@
 package ort.argentina.yatay.tp3.tp3_parcial_grupal3
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.navigation.AppNavGraph
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.navigation.Screen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components.BottomNavigationBar
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.R
 
-/**
- * MAIN SCREEN - Pantalla principal que integra navegación y barra inferior
- */
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
@@ -25,18 +30,27 @@ fun MainScreen() {
         Screen.OnBoarding.route
     )
 
-    Scaffold(
-        bottomBar = {
-            if (showBottomBar) {
-                // tu bottom bar actual
-                BottomNavigationBar(navController = navController)
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(colorResource(R.color.panel_soft))
+    ) {
+        Scaffold(
+            containerColor = Color.Transparent,
+            // Usa la firma segura; algunas versiones no aceptan WindowInsets(0)
+            contentWindowInsets = WindowInsets(0, 0, 0, 0),
+            bottomBar = {
+                if (showBottomBar) {
+                    BottomNavigationBar(navController = navController)
+                }
             }
+        ) { innerPadding ->
+            AppNavGraph(
+                navController = navController,
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .consumeWindowInsets(innerPadding)
+            )
         }
-    ) { innerPadding ->
-        AppNavGraph(
-            navController = navController,
-            modifier = Modifier.padding(innerPadding)
-        )
     }
 }
-

@@ -28,7 +28,7 @@ import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.notifications.Noti
 fun AppNavGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    startDestination: String = Screen.Launch.route
+    startDestination: String = Screen.Transaction.route
 ) {
     var showNotifications by remember { mutableStateOf(false) }
 
