@@ -2,21 +2,14 @@
 
 package ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile
 
-
-
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -27,10 +20,11 @@ import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components.BotonIconTextoF
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components.FlechaTituloPrincipalCampana
 
 @Composable
-fun FingerprintScreen(
+fun ProfileSettingsScreen(
     onNavigateBack: () -> Unit = {},
-    onJohnFingerprint: () -> Unit = {},
-    onAddFingerprint: () -> Unit = {}
+    onNotificationSettings: () -> Unit = {},
+    onPasswordSettings: () -> Unit = {},
+    onDeleteAccount: () -> Unit = {}
 ) {
     val primaryColor = Color(0xFF00C896) // Verde principal
 
@@ -44,7 +38,7 @@ fun FingerprintScreen(
     Scaffold(
         topBar = {
             FlechaTituloPrincipalCampana(
-                titulo = "Fingerprint",
+                titulo = "Settings",
                 onBack = onNavigateBack,
                 onNotifications = { /* notificaciones */ },
                 primaryColor = primaryColor
@@ -75,24 +69,34 @@ fun FingerprintScreen(
                         .padding(top = 50.dp, bottom = 24.dp),
                     horizontalAlignment = Alignment.Start
                 ) {
-                    // John Fingerprint
+                    // Notification Settings
                     BotonIconTextoFlecha(
-                        texto = "John Fingerprint",
-                        iconPainter = painterResource(id = R.drawable.fingerprint_icon),
-                        onClick = onJohnFingerprint,
+                        texto = "Notification Settings",
+                        iconPainter = painterResource(id = R.drawable.settings_campana),
+                        onClick = onNotificationSettings,
                         fontFamily = poppinsFontFamily,
-                        iconWidth = 57.dp,
-                        iconHeight = 53.dp
+                        iconWidth = 31.dp,
+                        iconHeight = 31.dp
                     )
 
-                    // Add A Fingerprint
+                    // Password Settings
                     BotonIconTextoFlecha(
-                        texto = "Add A Fingerprint",
-                        iconPainter = painterResource(id = R.drawable.add_icon),
-                        onClick = onAddFingerprint,
+                        texto = "Password Settings",
+                        iconPainter = painterResource(id = R.drawable.settings_llave),
+                        onClick = onPasswordSettings,
                         fontFamily = poppinsFontFamily,
-                        iconWidth = 57.dp,
-                        iconHeight = 53.dp
+                        iconWidth = 31.dp,
+                        iconHeight = 31.dp
+                    )
+
+                    // Delete Account
+                    BotonIconTextoFlecha(
+                        texto = "Delete Account",
+                        iconPainter = painterResource(id = R.drawable.settings_persona),
+                        onClick = onDeleteAccount,
+                        fontFamily = poppinsFontFamily,
+                        iconWidth = 31.dp,
+                        iconHeight = 31.dp
                     )
                 }
             }

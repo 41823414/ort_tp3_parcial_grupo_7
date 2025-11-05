@@ -32,6 +32,10 @@ import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.Fingerprin
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.ChangePinScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.TermsAndConditionsScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.LoadingSecurityScreen
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.ProfileSettingsScreen
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.ProfileNotificationSettingsScreen
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.ProfilePasswordSettingsScreen
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.DeleteAccountScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.notifications.NotificationsDialog
 
 /**
@@ -152,7 +156,7 @@ fun AppNavGraph(
                 onNavigateBack = { navController.popBackStack() },
                 onEditProfile = { navController.navigate(Screen.ProfileEdit.route) },
                 onSecurity = { navController.navigate(Screen.Security.route) },
-                onSetting = { /* TODO: Implementar navegación a Setting */ },
+                onSetting = { navController.navigate(Screen.ProfileSettings.route) },
                 onHelp = { /* TODO: Implementar navegación a Help */ },
                 onLogout = {
                     navController.navigate(Screen.Login.route) {
@@ -305,6 +309,44 @@ fun AppNavGraph(
         composable(Screen.TermsAndConditions.route) {
             TermsAndConditionsScreen(
                 onNavigateBack = { navController.popBackStack() }
+            )
+        }
+
+        // Profile Settings Screen
+        composable(Screen.ProfileSettings.route) {
+            ProfileSettingsScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onNotificationSettings = { navController.navigate(Screen.ProfileNotificationSettings.route) },
+                onPasswordSettings = { navController.navigate(Screen.ProfilePasswordSettings.route) },
+                onDeleteAccount = { navController.navigate(Screen.DeleteAccount.route) }
+            )
+        }
+
+        // Profile Notification Settings Screen
+        composable(Screen.ProfileNotificationSettings.route) {
+            ProfileNotificationSettingsScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
+
+        // Profile Password Settings Screen
+        composable(Screen.ProfilePasswordSettings.route) {
+            ProfilePasswordSettingsScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onChangePasswordSuccess = { message ->
+                    val encodedMessage = URLEncoder.encode(message, "UTF-8")
+                    val encodedDestination = URLEncoder.encode(Screen.ProfileSettings.route, "UTF-8")
+                    navController.navigate("${Screen.LoadingSecurity.route}/$encodedMessage/$encodedDestination")
+                }
+            )
+        }
+
+        // Delete Account Screen
+        composable(Screen.DeleteAccount.route) {
+            DeleteAccountScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onDeleteAccount = { /* TODO: Implementar acción de eliminar cuenta */ },
+                onCancel = { navController.popBackStack() }
             )
         }
     }

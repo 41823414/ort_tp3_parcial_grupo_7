@@ -24,7 +24,9 @@ fun BotonIconTextoFlecha(
     onClick: () -> Unit,
     fontFamily: FontFamily,
     modifier: Modifier = Modifier,
-    bottomPadding: Int = 0
+    bottomPadding: Int = 0,
+    iconWidth: androidx.compose.ui.unit.Dp = 24.dp,
+    iconHeight: androidx.compose.ui.unit.Dp = 24.dp
 ) {
     Row(
         modifier = modifier
@@ -43,7 +45,9 @@ fun BotonIconTextoFlecha(
             Image(
                 painter = iconPainter,
                 contentDescription = null,
-                modifier = Modifier.size(24.dp),
+                modifier = Modifier
+                    .width(iconWidth)
+                    .height(iconHeight),
                 contentScale = ContentScale.Fit
             )
 

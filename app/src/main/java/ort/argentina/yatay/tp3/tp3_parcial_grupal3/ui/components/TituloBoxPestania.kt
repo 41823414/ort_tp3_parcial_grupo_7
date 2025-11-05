@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -20,23 +21,28 @@ import ort.argentina.yatay.tp3.tp3_parcial_grupal3.R
 
 @Composable
 fun TituloBoxPestania(
-    label: String,
+    label: String? = null,
     value: String,
     onValueChange: (String) -> Unit,
     visible: Boolean,
     onVisibilityToggle: () -> Unit,
-    poppinsFontFamily: FontFamily
+    poppinsFontFamily: FontFamily,
+    boxImage: Painter? = null,
+    boxImageWidth: androidx.compose.ui.unit.Dp = 60.dp,
+    boxImageHeight: androidx.compose.ui.unit.Dp = 14.dp
 ) {
     Column {
-        // Label
-        Text(
-            text = label,
-            fontSize = 14.sp,
-            fontFamily = poppinsFontFamily,
-            fontWeight = FontWeight.Medium,
-            color = Color(0xFF093030),
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
+        // Label - solo se muestra si no es null y no está vacío
+        if (!label.isNullOrBlank()) {
+            Text(
+                text = label,
+                fontSize = 14.sp,
+                fontFamily = poppinsFontFamily,
+                fontWeight = FontWeight.Medium,
+                color = Color(0xFF093030),
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+        }
 
         // Box personalizado que muestra solo puntos
         Box(
@@ -45,7 +51,7 @@ fun TituloBoxPestania(
                 .height(50.dp)
                 .background(Color(0xFFDFF7E2), RoundedCornerShape(12.dp))
         ) {
-            // Contenido visible: mostrar puntos alineados a la izquierda
+            // Contenido visible: mostrar imagen si se proporciona, alineada a la izquierda
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -53,14 +59,16 @@ fun TituloBoxPestania(
                     .padding(start = 16.dp, end = 50.dp), // Padding izquierdo y espacio para el icono del ojo
                 contentAlignment = Alignment.CenterStart
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.puntos),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .width(60.dp)
-                        .height(20.dp),
-                    colorFilter = ColorFilter.tint(Color(0xFF000000))
-                )
+                if (boxImage != null) {
+                    Image(
+                        painter = boxImage,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .width(boxImageWidth)
+                            .height(boxImageHeight),
+                        colorFilter = ColorFilter.tint(Color(0xFF000000))
+                    )
+                }
             }
 
             // Icono del ojo a la derecha

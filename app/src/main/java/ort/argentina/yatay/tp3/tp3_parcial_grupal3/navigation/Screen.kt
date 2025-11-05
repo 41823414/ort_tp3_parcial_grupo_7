@@ -25,6 +25,10 @@ sealed class Screen(val route: String) {
     object ChangePin : Screen("change_pin")
     object TermsAndConditions : Screen("terms_and_conditions")
     object LoadingSecurity : Screen("loading_security")
+    object ProfileSettings : Screen("profile_settings")
+    object ProfileNotificationSettings : Screen("profile_notification_settings")
+    object ProfilePasswordSettings : Screen("profile_password_settings")
+    object DeleteAccount : Screen("delete_account")
 
     // Notifications (Dialog - no tiene ruta de navegación)
 
@@ -48,6 +52,10 @@ sealed class Screen(val route: String) {
             ChangePin.route -> ChangePin
             TermsAndConditions.route -> TermsAndConditions
             LoadingSecurity.route -> LoadingSecurity
+            ProfileSettings.route -> ProfileSettings
+            ProfileNotificationSettings.route -> ProfileNotificationSettings
+            ProfilePasswordSettings.route -> ProfilePasswordSettings
+            DeleteAccount.route -> DeleteAccount
             else -> Launch
         }
     }

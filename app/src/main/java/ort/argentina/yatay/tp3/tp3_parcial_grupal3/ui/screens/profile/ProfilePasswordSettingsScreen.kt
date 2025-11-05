@@ -2,39 +2,32 @@
 
 package ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile
 
-
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.R
-import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components.TituloBoxPestania
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components.FlechaTituloPrincipalCampana
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components.TituloBoxPestania
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.components.BotonSimple
 
 @Composable
-fun ChangePinScreen(
-    onBack: () -> Unit = {},
-    onChangePinSuccess: (String) -> Unit = {}
+fun ProfilePasswordSettingsScreen(
+    onNavigateBack: () -> Unit = {},
+    onChangePasswordSuccess: (String) -> Unit = {}
 ) {
     val primaryColor = Color(0xFF00C896) // Verde principal
 
@@ -45,21 +38,21 @@ fun ChangePinScreen(
         Font(R.font.poppins_semibold, FontWeight.SemiBold)
     )
 
-    // Estados para los campos PIN
-    var currentPin by remember { mutableStateOf("") }
-    var newPin by remember { mutableStateOf("") }
-    var confirmPin by remember { mutableStateOf("") }
+    // Estados para los campos de contraseña
+    var currentPassword by remember { mutableStateOf("") }
+    var newPassword by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
 
     // Estados para visibilidad
-    var currentPinVisible by remember { mutableStateOf(false) }
-    var newPinVisible by remember { mutableStateOf(false) }
-    var confirmPinVisible by remember { mutableStateOf(false) }
+    var currentPasswordVisible by remember { mutableStateOf(false) }
+    var newPasswordVisible by remember { mutableStateOf(false) }
+    var confirmPasswordVisible by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
             FlechaTituloPrincipalCampana(
-                titulo = "Change Pin",
-                onBack = onBack,
+                titulo = "Password Settings",
+                onBack = onNavigateBack,
                 onNotifications = { /* notificaciones */ },
                 primaryColor = primaryColor
             )
@@ -70,7 +63,7 @@ fun ChangePinScreen(
                 .fillMaxSize()
                 .background(primaryColor)
         ) {
-            // Contenedor blanco (Surface) ajustado
+            // Contenedor blanco (Surface) ajustado - se extiende hasta abajo cubriendo los botones de navegación
             Surface(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -90,53 +83,59 @@ fun ChangePinScreen(
                     horizontalAlignment = Alignment.Start,
                     verticalArrangement = Arrangement.spacedBy(20.dp)
                 ) {
-                    // Current Pin Field
+                    // Current Password Field
                     TituloBoxPestania(
-                        label = "Current Pin",
-                        value = currentPin,
-                        onValueChange = { if (it.length <= 4) currentPin = it },
-                        visible = currentPinVisible,
-                        onVisibilityToggle = { currentPinVisible = !currentPinVisible },
+                        label = "Current Password",
+                        value = currentPassword,
+                        onValueChange = { currentPassword = it },
+                        visible = currentPasswordVisible,
+                        onVisibilityToggle = { currentPasswordVisible = !currentPasswordVisible },
                         poppinsFontFamily = poppinsFontFamily,
-                        boxImage = painterResource(id = R.drawable.puntos)
+                        boxImage = painterResource(id = R.drawable.puntos_doble),
+                        boxImageWidth = 120.dp,
+                        boxImageHeight = 14.dp
                     )
 
-                    // New Pin Field
+                    // New Password Field
                     TituloBoxPestania(
-                        label = "New Pin",
-                        value = newPin,
-                        onValueChange = { if (it.length <= 4) newPin = it },
-                        visible = newPinVisible,
-                        onVisibilityToggle = { newPinVisible = !newPinVisible },
+                        label = "New Password",
+                        value = newPassword,
+                        onValueChange = { newPassword = it },
+                        visible = newPasswordVisible,
+                        onVisibilityToggle = { newPasswordVisible = !newPasswordVisible },
                         poppinsFontFamily = poppinsFontFamily,
-                        boxImage = painterResource(id = R.drawable.puntos)
+                        boxImage = painterResource(id = R.drawable.puntos_doble),
+                        boxImageWidth = 120.dp,
+                        boxImageHeight = 14.dp
                     )
 
-                    // Confirm Pin Field
+                    // Confirm New Password Field
                     TituloBoxPestania(
-                        label = "Confirm Pin",
-                        value = confirmPin,
-                        onValueChange = { if (it.length <= 4) confirmPin = it },
-                        visible = confirmPinVisible,
-                        onVisibilityToggle = { confirmPinVisible = !confirmPinVisible },
+                        label = "Confirm New Password",
+                        value = confirmPassword,
+                        onValueChange = { confirmPassword = it },
+                        visible = confirmPasswordVisible,
+                        onVisibilityToggle = { confirmPasswordVisible = !confirmPasswordVisible },
                         poppinsFontFamily = poppinsFontFamily,
-                        boxImage = painterResource(id = R.drawable.puntos)
+                        boxImage = painterResource(id = R.drawable.puntos_doble),
+                        boxImageWidth = 120.dp,
+                        boxImageHeight = 14.dp
                     )
 
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    // Change Pin Button - centrado y con ancho reducido
+                    // Change Password Button - centrado y con ancho completo
                     Box(
                         modifier = Modifier.fillMaxWidth(),
                         contentAlignment = Alignment.Center
                     ) {
                         BotonSimple(
-                            texto = "Change Pin",
+                            texto = "Change Password",
                             colorFondo = primaryColor,
                             fillMaxWidth = 1.0f,
                             height = 50,
                             fontSize = 16,
-                            onClick = { onChangePinSuccess("Pin Has been Changed successfully") }
+                            onClick = { onChangePasswordSuccess("Password Has been Changed successfully") }
                         )
                     }
                 }
