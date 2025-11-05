@@ -287,7 +287,7 @@ fun DeleteAccountScreen(
                                 texto = "Yes, Delete Account",
                                 colorFondo = primaryColor,
                                 fillMaxWidth = 1.0f,
-                                height = 50,
+                                height = 45,
                                 fontSize = 16,
                                 onClick = {
                                     showConfirmDialog = false
@@ -302,7 +302,7 @@ fun DeleteAccountScreen(
                                 texto = "Cancel",
                                 colorFondo = Color(0xFFDFF7E2),
                                 fillMaxWidth = 1.0f,
-                                height = 50,
+                                height = 45,
                                 fontSize = 16,
                                 onClick = { showConfirmDialog = false }
                             )
