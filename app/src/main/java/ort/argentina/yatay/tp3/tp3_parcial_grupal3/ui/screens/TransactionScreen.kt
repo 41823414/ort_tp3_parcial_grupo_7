@@ -8,13 +8,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -93,131 +91,141 @@ fun TransactionScreen(
 
             Spacer(Modifier.height(12.dp))
 
-            // Card Total Balance
-            Surface(
-                color = colorResource(R.color.card_mint),
-                shape = RoundedCornerShape(16.dp),
-                shadowElevation = 0.dp,
+            // Contenedor al 90%
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .heightIn(min = 76.dp)
+                    .padding(horizontal = 16.dp),
+                contentAlignment = Alignment.Center
             ) {
                 Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 12.dp),
+                    modifier = Modifier.fillMaxWidth(0.9f),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        text = "Total Balance",
-                        color = colorResource(R.color.title_muted),
-                        fontSize = 15.sp,
-                        fontFamily = poppinsFamily
-                    )
-                    Text(
-                        text = "$7,783.00",
-                        color = colorResource(R.color.amount_dark),
-                        fontSize = 30.sp,
-                        fontWeight = FontWeight.Bold,
-                        fontFamily = poppinsFamily
-                    )
-                }
-            }
+                    // Card Total Balance
+                    Surface(
+                        color = colorResource(R.color.card_mint),
+                        shape = RoundedCornerShape(16.dp),
+                        shadowElevation = 0.dp,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .heightIn(min = 76.dp)
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 12.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "Total Balance",
+                                color = colorResource(R.color.title_muted),
+                                fontSize = 15.sp,
+                                fontFamily = poppinsFamily
+                            )
+                            Text(
+                                text = "$7,783.00",
+                                color = colorResource(R.color.amount_dark),
+                                fontSize = 30.sp,
+                                fontWeight = FontWeight.Bold,
+                                fontFamily = poppinsFamily
+                            )
+                        }
+                    }
 
-            Spacer(Modifier.height(16.dp))
+                    Spacer(Modifier.height(16.dp))
 
-            // Totales
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-            ) {
-                Column(modifier = Modifier.weight(1f)) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
+                    // Totales
+                    Row(
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    painter = painterResource(R.drawable.cash),
+                                    contentDescription = null,
+                                    tint = Color.White,
+                                    modifier = Modifier.size(16.dp)
+                                )
+                                Spacer(Modifier.width(6.dp))
+                                Text(
+                                    text = "Total Balance",
+                                    color = Color.White,
+                                    fontSize = 12.sp,
+                                    fontFamily = poppinsFamily
+                                )
+                            }
+                            Text(
+                                text = "$7,783.00",
+                                color = Color.White,
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Bold,
+                                fontFamily = poppinsFamily
+                            )
+                        }
+                        Column(
+                            modifier = Modifier.weight(1f),
+                            horizontalAlignment = Alignment.End
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    painter = painterResource(R.drawable.bag),
+                                    contentDescription = null,
+                                    tint = Color.White,
+                                    modifier = Modifier.size(16.dp)
+                                )
+                                Spacer(Modifier.width(6.dp))
+                                Text(
+                                    text = "Total Expense",
+                                    color = Color.White,
+                                    fontSize = 12.sp,
+                                    fontFamily = poppinsFamily
+                                )
+                            }
+                            Text(
+                                text = "-$1,187.40",
+                                color = Color(0xFF9EE3FF),
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Bold,
+                                fontFamily = poppinsFamily
+                            )
+                        }
+                    }
+
+                    Spacer(Modifier.height(12.dp))
+
+                    ProgressBarWithLabel(
+                        progress = 0.3f,
+                        maxAmount = "$20,000.00",
+                        percentageText = "30%",
+                        barBackgroundColor = colorResource(R.color.void_black),
+                        barProgressColor = colorResource(R.color.honeydew),
+                        cornerRadius = 50,
+                        percentageTextColor = Color.White,
+                        amountTextColor = colorResource(R.color.void_black)
+                    )
+
+                    Spacer(Modifier.height(12.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
                         Icon(
-                            painter = painterResource(R.drawable.cash),
+                            painter = painterResource(R.drawable.tick),
                             contentDescription = null,
                             tint = Color.White,
                             modifier = Modifier.size(16.dp)
                         )
                         Spacer(Modifier.width(6.dp))
                         Text(
-                            text = "Total Balance",
+                            text = "30% Of Your Expenses, Looks Good.",
                             color = Color.White,
                             fontSize = 12.sp,
                             fontFamily = poppinsFamily
                         )
                     }
-                    Text(
-                        text = "$7,783.00",
-                        color = Color.White,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        fontFamily = poppinsFamily
-                    )
                 }
-                Column(
-                    modifier = Modifier.weight(1f),
-                    horizontalAlignment = Alignment.End
-                ) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(
-                            painter = painterResource(R.drawable.bag),
-                            contentDescription = null,
-                            tint = Color.White,
-                            modifier = Modifier.size(16.dp)
-                        )
-                        Spacer(Modifier.width(6.dp))
-                        Text(
-                            text = "Total Expense",
-                            color = Color.White,
-                            fontSize = 12.sp,
-                            fontFamily = poppinsFamily
-                        )
-                    }
-                    Text(
-                        text = "-$1,187.40",
-                        color = Color(0xFF9EE3FF),
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        fontFamily = poppinsFamily
-                    )
-                }
-            }
-
-            Spacer(Modifier.height(12.dp))
-
-            ProgressBarWithLabel(
-                progress = 0.3f,
-                maxAmount = "$20,000.00",
-                percentageText = "30%",
-                barBackgroundColor = colorResource(R.color.void_black),
-                barProgressColor = colorResource(R.color.honeydew),
-                cornerRadius = 50,
-                percentageTextColor = Color.White,
-                amountTextColor = colorResource(R.color.void_black)
-            )
-
-            Spacer(Modifier.height(12.dp))
-
-            Row(
-                modifier = Modifier.padding(horizontal = 16.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.tick),
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = Modifier.size(16.dp)
-                )
-                Spacer(Modifier.width(6.dp))
-                Text(
-                    text = "30% Of Your Expenses, Looks Good.",
-                    color = Color.White,
-                    fontSize = 12.sp,
-                    fontFamily = poppinsFamily
-                )
             }
 
             Spacer(Modifier.height(20.dp))
@@ -234,11 +242,23 @@ fun TransactionScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 16.dp, bottom = 8.dp)
+                        .padding(top = 16.dp, bottom = 8.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    TransactionsHistoryList(
-                        modifier = Modifier.fillMaxWidth()
-                    )
+                    // Contenido al 85% de ancho dentro de la caja blanca
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(
+                            modifier = Modifier.fillMaxWidth(0.9f)
+                        ) {
+                            TransactionsHistoryList(
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+                    }
                 }
             }
 

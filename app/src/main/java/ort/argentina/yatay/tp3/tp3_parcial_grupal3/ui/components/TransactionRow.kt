@@ -45,75 +45,83 @@ fun TransactionRow(
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Icon
+        // Icon - 10%
         Surface(
-            modifier = Modifier.size(32.dp),
+            modifier = Modifier
+                .fillMaxWidth(0.10f / 0.9f)
+                .aspectRatio(1f),
             color = iconColor,
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(16.dp)
         ) {
             Icon(
                 painter = icon,
                 contentDescription = title,
                 tint = Color.White,
                 modifier = Modifier
-                    .padding(10.dp)
+                    .padding(8.dp)
                     .size(24.dp)
             )
         }
 
-        // Title + DateTime
+        // Title + DateTime - 30%
         Column(
-            modifier = Modifier.width(100.dp)
+            modifier = Modifier.fillMaxWidth(0.333f)
         ) {
             Text(
                 text = title,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.SemiBold,
                 fontFamily = poppinsFamily,
-                color = colorResource(R.color.fence_green)
+                color = colorResource(R.color.fence_green),
+                maxLines = 1
             )
             Text(
                 text = dateTime,
                 fontSize = 10.sp,
+                fontWeight = FontWeight.Bold,
                 fontFamily = poppinsFamily,
-                color = colorResource(R.color.light_blue)
+                color = colorResource(R.color.ocean_blue),
+                maxLines = 1
             )
         }
 
         // Vertical Divider
         Box(
             modifier = Modifier
-                .width(1.dp)
+                .width(2.dp)
                 .height(32.dp)
-                .background(colorResource(R.color.light_green))
+                .background(colorResource(R.color.caribbean_green))
         )
 
-        // Type of Charge
+        // Type of Charge - 25%
         Text(
             text = typeOfCharge,
             fontSize = 12.sp,
             fontFamily = poppinsFamily,
             color = colorResource(R.color.fence_green),
-            modifier = Modifier.width(70.dp)
+            modifier = Modifier
+                .fillMaxWidth(0.357f)
+                .padding(horizontal = 8.dp),
+            maxLines = 1
         )
 
         // Vertical Divider
         Box(
             modifier = Modifier
-                .width(1.dp)
+                .width(2.dp)
                 .height(40.dp)
-                .background(colorResource(R.color.light_green))
+                .background(colorResource(R.color.caribbean_green))
         )
 
-        // Amount with dynamic color
+        // Amount with dynamic color - 35%
         Text(
             text = amount,
             fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.SemiBold,
             fontFamily = poppinsFamily,
             color = amountColor,
-            modifier = Modifier.width(80.dp),
-            textAlign = TextAlign.End
+            textAlign = TextAlign.End,
+            modifier = Modifier.fillMaxWidth()
         )
     }
 }

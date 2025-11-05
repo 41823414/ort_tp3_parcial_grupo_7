@@ -33,7 +33,8 @@ fun HomeScreen(
     ) {
         Column(
             modifier = Modifier
-                .weight(1f),
+                .weight(1f)
+                .padding(top = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // 1. Header
