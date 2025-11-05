@@ -29,6 +29,9 @@ sealed class Screen(val route: String) {
     object ProfileNotificationSettings : Screen("profile_notification_settings")
     object ProfilePasswordSettings : Screen("profile_password_settings")
     object DeleteAccount : Screen("delete_account")
+    object HelpCenter : Screen("help_center")
+    object OnlineSupport : Screen("online_support")
+    object OnlineSupportChat : Screen("online_support_chat")
 
     // Notifications (Dialog - no tiene ruta de navegación)
 
@@ -56,6 +59,9 @@ sealed class Screen(val route: String) {
             ProfileNotificationSettings.route -> ProfileNotificationSettings
             ProfilePasswordSettings.route -> ProfilePasswordSettings
             DeleteAccount.route -> DeleteAccount
+            HelpCenter.route -> HelpCenter
+            OnlineSupport.route -> OnlineSupport
+            OnlineSupportChat.route -> OnlineSupportChat
             else -> Launch
         }
     }

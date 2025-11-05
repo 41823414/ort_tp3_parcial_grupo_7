@@ -36,6 +36,9 @@ import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.ProfileSet
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.ProfileNotificationSettingsScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.ProfilePasswordSettingsScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.DeleteAccountScreen
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.HelpCenterScreen
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.OnlineSupportScreen
+import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.OnlineSupportChatScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.notifications.NotificationsDialog
 
 /**
@@ -157,7 +160,7 @@ fun AppNavGraph(
                 onEditProfile = { navController.navigate(Screen.ProfileEdit.route) },
                 onSecurity = { navController.navigate(Screen.Security.route) },
                 onSetting = { navController.navigate(Screen.ProfileSettings.route) },
-                onHelp = { /* TODO: Implementar navegación a Help */ },
+                onHelp = { navController.navigate(Screen.HelpCenter.route) },
                 onLogout = {
                     navController.navigate(Screen.Login.route) {
                         popUpTo(0) { inclusive = true }
@@ -347,6 +350,37 @@ fun AppNavGraph(
                 onNavigateBack = { navController.popBackStack() },
                 onDeleteAccount = { /* TODO: Implementar acción de eliminar cuenta */ },
                 onCancel = { navController.popBackStack() }
+            )
+        }
+
+        // Help Center Screen
+        composable(Screen.HelpCenter.route) {
+            HelpCenterScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onCustomerService = { navController.navigate(Screen.OnlineSupport.route) }
+            )
+        }
+
+        // Online Support Screen
+        composable(Screen.OnlineSupport.route) {
+            OnlineSupportScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onStartAnotherChat = { /* TODO: Implementar acción */ },
+                onSupportAssistantClick = { navController.navigate(Screen.OnlineSupportChat.route) }
+            )
+        }
+
+        // Online Support Chat Screen
+        composable(Screen.OnlineSupportChat.route) {
+            OnlineSupportChatScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onHelpCenterClick = { 
+                    navController.navigate(Screen.HelpCenter.route) {
+                        popUpTo(Screen.Profile.route) {
+                            inclusive = false
+                        }
+                    }
+                }
             )
         }
     }
