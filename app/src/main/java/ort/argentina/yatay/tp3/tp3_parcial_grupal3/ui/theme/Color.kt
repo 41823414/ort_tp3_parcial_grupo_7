@@ -7,6 +7,10 @@ val GreenPrimary = Color(0xFF00B686)     // el verde del header onboarding
 val GreenPrimaryDark = Color(0xFF008662) // para dark / estados
 val GreenSecondary = Color(0xFFB2F2E2)   // un verde muy clarito de apoyo
 
+// Colores de pantalla
+val CaribbeanGreenLight = Color(0xFF00D09E)  // Light theme - Categories Screen
+val VoidGreenDark = Color(0xFF031314)        // Dark theme - Categories Screen
+
 // Neutrales (por si los necesitás)
 val BgLight = Color(0xFFF8FAF9)
 val TextPrimary = Color(0xFF1C1B1F)
