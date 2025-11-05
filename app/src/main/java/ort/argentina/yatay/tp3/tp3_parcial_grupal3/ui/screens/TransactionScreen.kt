@@ -31,14 +31,15 @@ fun TransactionScreen(
 ) {
     val topColor   = Color(0xFF00B686)
     val panelColor = colorResource(R.color.panel_soft)
+    val baseBackgroundColor = colorResource(R.color.caribbean_green)
 
     val scroll = rememberScrollState()
 
-    // Fondo base de toda la pantalla = panel_soft
+    // Fondo base de toda la pantalla = caribbean_green
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(panelColor)
+            .background(baseBackgroundColor)
     ) {
         // Lona verde superior
         Box(
@@ -55,7 +56,6 @@ fun TransactionScreen(
                 .statusBarsPadding()
                 .navigationBarsPadding()
                 .verticalScroll(scroll)
-                .padding(bottom = 12.dp)
         ) {
             // Top bar
             Row(
@@ -242,10 +242,10 @@ fun TransactionScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 16.dp, bottom = 8.dp),
+                        .padding(top = 16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    // Contenido al 85% de ancho dentro de la caja blanca
+                    // Contenido al 90% de ancho dentro de la caja blanca
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(),
@@ -262,8 +262,12 @@ fun TransactionScreen(
                 }
             }
 
-            // Separación para que la lista no “choque” con la bottom bar
-            Spacer(Modifier.height(96.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(20.dp)
+                    .background(colorResource(R.color.honeydew))
+            )
         }
     }
 }
