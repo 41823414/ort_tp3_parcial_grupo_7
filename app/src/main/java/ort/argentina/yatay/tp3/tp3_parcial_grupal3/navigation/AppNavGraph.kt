@@ -1,16 +1,11 @@
 package ort.argentina.yatay.tp3.tp3_parcial_grupal3.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
 import androidx.navigation.navArgument
 import java.net.URLDecoder
 import java.net.URLEncoder
@@ -44,7 +39,6 @@ import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.DeleteAcco
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.HelpCenterScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.OnlineSupportScreen
 import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.profile.OnlineSupportChatScreen
-import ort.argentina.yatay.tp3.tp3_parcial_grupal3.ui.screens.notifications.NotificationsDialog
 
 /**
  * NAVEGACIÓN - Grafo de navegación de la app
@@ -463,7 +457,6 @@ fun AppNavGraph(
                 }
             )
         }
-    }
 
         // Notifications Screen
         composable(Screen.Notifications.route) {
