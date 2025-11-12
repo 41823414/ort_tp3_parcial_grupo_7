@@ -1,77 +1,26 @@
-# Compiled class files
+### Kotlin template
+# Compiled class file
 *.class
 
-# Log files
+# Log file
 *.log
-log/
 
-# Package files
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
 *.jar
 *.war
+*.nar
 *.ear
-
-# Build artifacts
-/build/
-/out/
-/target/
-
-# Gradle
-.gradle/
-build/
-*.gradle.kts.cache
-.kotlin/
-.kotlin/sessions/kotlin-compiler-*.salive # For Kotlin 2+ compiler sessions
-
-# IntelliJ IDEA
-.idea/
-*.iml
-*.iws
-*.ipr
-.idea/libraries/
-.idea/modules.xml
-.idea/workspace.xml
-.idea/navEditor.xml
-.idea/assetWizardSettings.xml
-.idea/caches/
-
-# Android Studio
-local.properties
-.DS_Store
-captures/
-.externalNativeBuild/
-.cxx/
-
-# Maven
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/wrapper/maven-wrapper.jar
-
-# Kotlin Multiplatform specific
-# Add any specific build artifacts or generated files related to your KMP targets
-# For example, for JS:
-# /js/build/
-# /js/node_modules/
-
-# Other
 *.zip
-*.tar
-*.gz
+*.tar.gz
 *.rar
-*.7z
-*.bak
-*.swp
-*.swo
-*.tmp
-.DS_Store
-# Firebase
-# Firebase
-google-services.json
-**/google-services.json
-*.md
-!/README.md
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
+
